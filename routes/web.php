@@ -26,6 +26,7 @@ All Superadmin Routes List
 --------------------------------------------
 --------------------------------------------*/
 
+
 use App\Http\Controllers\AdminRegisterController;
 Route::middleware(['auth', 'user-access:superadmin'])->group(function () {
   
@@ -34,6 +35,12 @@ Route::middleware(['auth', 'user-access:superadmin'])->group(function () {
     Route::get('/superadmin/register-admin', [AdminRegisterController::class, 'showRegisteradminForm'])->name('superadmin.register.admin.form');
     Route::post('/superadmin/register-admin', [AdminRegisterController::class, 'registeradmin'])->name('superadmin.register.admin');
 });
+  
+Route::get('admin/verify/otp/{id}', [AdminRegisterController::class, 'showOtpForm'])->name('admin.verify.otp.form');
+Route::post('admin/verify/otp/{id}', [AdminRegisterController::class, 'verifyOtp'])->name('admin.verify.otp');
+
+Route::get('admin/setup/password/{id}', [AdminRegisterController::class, 'showPasswordSetupForm'])->name('admin.setup.password.form');
+Route::post('admin/setup/password/{id}', [AdminRegisterController::class, 'setupPassword'])->name('admin.setup.password');
   
 /*------------------------------------------
 --------------------------------------------

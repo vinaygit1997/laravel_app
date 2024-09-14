@@ -92,9 +92,9 @@
                 <li><a href="{{ route('login') }}">Login</a></li>
             @endif
 
-            <!-- @if (Route::has('register'))
+            @if (Route::has('register'))
                 <li><a href="{{ route('register') }}">Register</a></li>
-            @endif -->
+            @endif
         @else
             <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{ Auth::user()->name }} <span class="caret"></span></a>
