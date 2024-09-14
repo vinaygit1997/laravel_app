@@ -297,3 +297,8 @@ Route::get('/resident/documents', [DocumentController::class, 'index'])->name('r
 use App\Http\Controllers\HelpDeskController;
 
 Route::get('/resident/helpdesk', [HelpDeskController::class, 'index'])->name('resident.helpdesk.index');
+
+
+use App\Http\Controllers\ParkingSlotController;
+
+Route::get('/admin/parking-slot', [ParkingSlotController::class, 'index'])->name('admin.parking-slot.index');

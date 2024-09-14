@@ -115,6 +115,14 @@
 </li>
 
 <li class="nav-item">   
+    <a class="nav-link" href="{{ route('admin.parking-slot.index') }}">
+        <i class="bi bi-cart"></i>
+        <span class="nav-text">Parking</span>
+        <i class="bi bi-chevron-down ms-auto"></i>
+    </a>
+</li>
+
+<li class="nav-item">   
     <a class="nav-link" href="{{ route('admin.helpdesk.opendesk') }}">
         <i class="bi bi-cart"></i>
         <span class="nav-text">Open Request</span>
