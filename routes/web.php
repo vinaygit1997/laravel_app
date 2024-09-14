@@ -306,3 +306,18 @@ Route::get('/resident/helpdesk', [HelpDeskController::class, 'index'])->name('re
 use App\Http\Controllers\ParkingSlotController;
 
 Route::get('/admin/parking-slot', [ParkingSlotController::class, 'index'])->name('admin.parking-slot.index');
+
+
+Route::get('/admin/staff', function () {
+    return view('admin.staff.view-staff');
+})->name('admin.staff.view-staff');
+Route::get('/admin/staff/create', function () {
+    return view('admin.staff.create');
+})->name('admin.staff.create');
+
+Route::get('/admin/vendors', function () {
+    return view('admin.vendors.view-vendors');
+})->name('admin.vendors.view-vendors');
+Route::get('/admin/vendors/create', function () {
+    return view('admin.vendors.create');
+})->name('admin.vendors.create');

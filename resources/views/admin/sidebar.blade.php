@@ -67,7 +67,7 @@
             </li>
             
             <li class="nav-item">
-                <a class="nav-link" href="{{ route('admin.newuser') }}">
+                <a class="nav-link" href="{{ route('admin.register.resident') }}">
                     <i class="bi bi-cart"></i>
                     <span class="nav-text">New User</span>
                     <i class="bi bi-chevron-down ms-auto"></i>
@@ -127,6 +127,21 @@
         <i class="bi bi-cart"></i>
         <span class="nav-text">Open Request</span>
         <!-- <i class="bi bi-chevron-down ms-auto"></i> -->
+    </a>
+</li>
+<li class="nav-item">   
+    <!-- <a class="nav-link" href="{{ route('admin.staff.view-staff') }}"> -->
+    <a class="nav-link" href="{{ route('admin.staff.view-staff') }}">
+        <i class="bi bi-cart"></i>
+        <span class="nav-text">Staff Manager</span>
+        <i class="bi bi-chevron-down ms-auto"></i>
+    </a>
+</li>
+<li class="nav-item">   
+    <a class="nav-link" href="{{ route('admin.vendors.view-vendors') }}">
+        <i class="bi bi-cart"></i>
+        <span class="nav-text">Vendor Master</span>
+        <i class="bi bi-chevron-down ms-auto"></i>
     </a>
 </li>
             <li class="nav-item">
