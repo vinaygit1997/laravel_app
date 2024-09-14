@@ -63,7 +63,11 @@ Route::middleware(['auth', 'user-access:admin'])->group(function () {
     Route::get('/openrequest', function () {
         return view('admin.helpdesk.openrequest');
     })->name('admin.helpdesk.opendesk');
+    Route::get('/openrequest-create', function () {
+        return view('admin.helpdesk.create');
+    })->name('helpdesk-create');
 });
+  
 /*------------------------------------------
 --------------------------------------------
 All Admin Routes List
