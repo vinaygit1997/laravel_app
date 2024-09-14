@@ -78,10 +78,14 @@
 </style>
 
 <div class="container mt-4">
-    <div class="d-flex justify-content-between align-items-center mb-3">
-        <h4>Manage Parking Slots</h4>
-        <button class="btn btn-success" onclick="openAddModal()">+</button>
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <h4>Manage Parking Slots</h4>
+    <div class="d-flex">
+        <button class="btn btn-success me-2" onclick="openAddModal()">+</button>
+        <a href="{{ route('admin.parking-slot.vehicle_category') }}" class="btn btn-primary">Category</a>
     </div>
+</div>
+
     <div class="parking-slot-table-wrapper table-responsive">
         <table id="categoryTable" class="table table-bordered">
             <thead class="thead-light">

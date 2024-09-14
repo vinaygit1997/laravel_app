@@ -306,3 +306,7 @@ Route::get('/resident/helpdesk', [HelpDeskController::class, 'index'])->name('re
 use App\Http\Controllers\ParkingSlotController;
 
 Route::get('/admin/parking-slot', [ParkingSlotController::class, 'index'])->name('admin.parking-slot.index');
+
+Route::get('/admin/parking-slot/vehicle-category', function () {
+    return view('admin.parking-slot.vehicle_category');
+})->name('admin.parking-slot.vehicle_category');
