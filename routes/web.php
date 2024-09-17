@@ -26,6 +26,7 @@ All Superadmin Routes List
 --------------------------------------------
 --------------------------------------------*/
 
+
 use App\Http\Controllers\AdminRegisterController;
 Route::middleware(['auth', 'user-access:superadmin'])->group(function () {
   
@@ -34,6 +35,12 @@ Route::middleware(['auth', 'user-access:superadmin'])->group(function () {
     Route::get('/superadmin/register-admin', [AdminRegisterController::class, 'showRegisteradminForm'])->name('superadmin.register.admin.form');
     Route::post('/superadmin/register-admin', [AdminRegisterController::class, 'registeradmin'])->name('superadmin.register.admin');
 });
+  
+Route::get('admin/verify/otp/{id}', [AdminRegisterController::class, 'showOtpForm'])->name('admin.verify.otp.form');
+Route::post('admin/verify/otp/{id}', [AdminRegisterController::class, 'verifyOtp'])->name('admin.verify.otp');
+
+Route::get('admin/setup/password/{id}', [AdminRegisterController::class, 'showPasswordSetupForm'])->name('admin.setup.password.form');
+Route::post('admin/setup/password/{id}', [AdminRegisterController::class, 'setupPassword'])->name('admin.setup.password');
   
 /*------------------------------------------
 --------------------------------------------
@@ -307,6 +314,22 @@ use App\Http\Controllers\ParkingSlotController;
 
 Route::get('/admin/parking-slot', [ParkingSlotController::class, 'index'])->name('admin.parking-slot.index');
 
+
 Route::get('/admin/parking-slot/vehicle-category', function () {
     return view('admin.parking-slot.vehicle_category');
 })->name('admin.parking-slot.vehicle_category');
+
+Route::get('/admin/staff', function () {
+    return view('admin.staff.view-staff');
+})->name('admin.staff.view-staff');
+Route::get('/admin/staff/create', function () {
+    return view('admin.staff.create');
+})->name('admin.staff.create');
+
+Route::get('/admin/vendors', function () {
+    return view('admin.vendors.view-vendors');
+})->name('admin.vendors.view-vendors');
+Route::get('/admin/vendors/create', function () {
+    return view('admin.vendors.create');
+})->name('admin.vendors.create');
+
