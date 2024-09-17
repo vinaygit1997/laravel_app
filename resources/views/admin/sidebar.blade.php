@@ -50,7 +50,7 @@
             <i class="bi bi-chevron-left collapse-icon" id="collapseBtn"></i>
         </div>
         <ul class="nav flex-column sidebar-nav">
-<<<<<<< HEAD
+
     <li class="nav-item">
         <a class="nav-link active" href="{{ route('admin.home') }}">
             <i class="bi bi-house-door"></i>
@@ -87,7 +87,7 @@
             <i class="bi bi-chevron-down ms-auto"></i>
         </a>
     </li>
-=======
+
             <li class="nav-item">
                 <a class="nav-link active" href="{{ route('admin.home') }}">
                     <i class="bi bi-house-door"></i>
@@ -123,7 +123,7 @@
         <i class="bi bi-chevron-down ms-auto"></i>
     </a>
 </li>
->>>>>>> c7fa559912f346d5dec9b8f41a2a86a44c4b60b5
+
 
     <li class="nav-item">   
         <a class="nav-link" href="{{ route('income') }}">
@@ -172,7 +172,6 @@
         </a>
     </li>
 
-<<<<<<< HEAD
        <!-- <li class="nav-item">
         <a class="nav-link" href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
             <i class="bi bi-box-arrow-right"></i>
@@ -180,7 +179,7 @@
             <i class="bi bi-chevron-down ms-auto"></i>
         </a>
     </li> -->
-=======
+
 <li class="nav-item">   
     <a class="nav-link" href="{{ route('admin.helpdesk.opendesk') }}">
         <i class="bi bi-cart"></i>
@@ -210,7 +209,7 @@
         <i class="bi bi-chevron-down ms-auto"></i>
     </a>
 </li>
->>>>>>> c7fa559912f346d5dec9b8f41a2a86a44c4b60b5
+
 
 
     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
