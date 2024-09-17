@@ -55,7 +55,7 @@
         }
 
         .admin-dashboard .icon-container i {
-            font-size: 30px;
+            font-size: 23px;
             margin-right: 15px;
             color: #007bff;
         }
@@ -95,6 +95,10 @@
             display: flex;
             flex-direction: column;
         }
+        .col-md-6{
+            flex: 0 0 50%;
+            max-width: 88%;
+        }
 
         .admin-dashboard .equal-height .card {
             flex: 1;
@@ -128,6 +132,13 @@
         .admin-dashboard .text-center {
             text-align: center;
         }
+
+        @media (max-width: 1024px) {
+        .col-md-6{
+            flex: 0 0 50%;
+            max-width: 88%;
+        }
+    }
 
         @media (max-width: 768px) {
             .admin-dashboard .icon-container {
@@ -191,8 +202,8 @@
     <!-- Units & Users and Helpdesk Tracker -->
     <div class="row equal-height">
         <!-- Units & Users -->
-        <div class="col-md-6">
-            <div class="card p-4">
+        <div class="col-md-4 col-lg-6">
+            <div class="card p-4 text-center">
                 <h5 class="dashboard-title">Units & Users</h5>
                 <div class="stat-row">
                     <div>
@@ -213,7 +224,7 @@
         </div>
 
         <!-- Helpdesk Tracker -->
-        <div class="col-md-6">
+        <div class="col-md-4 col-lg-6">
             <div class="card p-4">
                 <h5 class="dashboard-title">Helpdesk Tracker</h5>
                 <div class="stat-row">
@@ -235,7 +246,7 @@
     <h2 class="accounting-header">Accounting</h2>
     <div class="row equal-height">
         <!-- Income Tracker -->
-        <div class="col-md-6">
+        <div class="col-md-4 col-lg-6">
             <div class="card p-4">
                 <h5 class="dashboard-title">Income Tracker</h5>
                 <input type="text" id="incomeDateRange" class="form-control mb-3" placeholder="Select Date Range">
@@ -253,7 +264,7 @@
         </div>
 
         <!-- Expense Tracker -->
-        <div class="col-md-6">
+        <div class="col-md-4 col-lg-6">
             <div class="card p-4">
                 <h5 class="dashboard-title">Expense Tracker</h5>
                 <input type="text" id="expenseDateRange" class="form-control mb-3" placeholder="Select Date Range">
