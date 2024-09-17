@@ -1,4 +1,7 @@
-@extends('layouts.app')
+<!-- @extends('layouts.app')
+
+@section('content') -->
+
 
 @section('content')
 <div class="container">
@@ -7,7 +10,7 @@
    
         <div class="col-md-9">
             <div class="card">
-                <div class="card-header">{{ __('Dashboard') }}</div>
+                <!-- <div class="card-header">{{ __('Dashboard') }}</div> -->
 
                 <div class="card-body">
                     @if (session('status'))

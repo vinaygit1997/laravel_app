@@ -36,124 +36,94 @@
         <div class="icon-container">
             <i class="bi bi-file-earmark icon"></i>
         </div>
+        <div class="icon-container" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+          <i class="bi bi-box-arrow-right icon"></i>
+        </div>
+
+        <!-- <li class="nav-item">
+            <a class="nav-link" href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                <i class="bi bi-box-arrow-right"></i>
+                <span class="nav-text">Logout</span>
+            </a>
+        </li> -->
     </div>
 
     <div class="sidebar d-flex flex-column" id="sidebar">
-        <div class="sidebar-header p-3 text-center">
-            <img src="{{ asset('images/iiiq-logo.jpeg') }}" alt="Logo" class="sidebar-logo">
-            <h5 class="company-name">IIIQBETS.</h5>
-            <i class="bi bi-chevron-left collapse-icon" id="collapseBtn"></i>
-        </div>
-        <ul class="nav flex-column sidebar-nav">
-            <li class="nav-item">
-                <a class="nav-link active" href="{{ route('resident.home') }}">
-                    <i class="bi bi-house-door"></i>
-                    <span class="nav-text">Dashboard</span>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="{{ route('resident.visitors.index') }}">
-                    <i class="bi bi-box"></i>
-                    <span class="nav-text">Visitors</span>
-                    <i class="bi bi-chevron-down ms-auto"></i>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="{{ route('resident.entry-passes.index') }}">
-                    <i class="bi bi-cart"></i>
-                    <span class="nav-text">Entry Passes</span>
-                    <i class="bi bi-chevron-down ms-auto"></i>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="{{ route('resident.directory.neighbours') }}">
-                    <i class="bi bi-cart"></i>
-                    <span class="nav-text">Directory</span>
-                    <!-- <i class="bi bi-chevron-down ms-auto"></i> -->
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="{{ route('resident.facilities.index') }}">
-                    <i class="bi bi-cart"></i>
-                    <span class="nav-text">Facilities</span>
-                    <!-- <i class="bi bi-chevron-down ms-auto"></i> -->
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="{{ route('resident.activities.index') }}">
-                    <i class="bi bi-cart"></i>
-                    <span class="nav-text">Activities</span>
-                    <!-- <i class="bi bi-chevron-down ms-auto"></i> -->
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="{{ route('resident.expenses.index') }}">
-                    <i class="bi bi-cart"></i>
-                    <span class="nav-text">Apartment Expenditures</span>
-                    <!-- <i class="bi bi-chevron-down ms-auto"></i> -->
-                </a>
-            </li>
-            <li class="nav-item">
-    <a class="nav-link" href="{{ route('resident.helpdesk.index') }}">
-        <i class="bi bi-cart"></i>
-        <span class="nav-text">HelpDesk</span>
-        <!-- <i class="bi bi-chevron-down ms-auto"></i> -->
-    </a>
-</li>
-            <li class="nav-item">
-    <a class="nav-link" href="{{ route('resident.document.index') }}">
-        <i class="bi bi-cart"></i>
-        <span class="nav-text">Documents</span>
-        <!-- <i class="bi bi-chevron-down ms-auto"></i> -->
-    </a>
-</li>
-
-            <li class="nav-item">
-    <a class="nav-link" href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-        <i class="bi bi-truck"></i>
-        <span class="nav-text">Logout</span>
-        <i class="bi bi-chevron-down ms-auto"></i>
-    </a>
-</li>
-
-<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-    @csrf
-</form>
-            <!-- <li class="nav-item">
-                <a class="nav-link" href="#">
-                    <i class="bi bi-truck"></i>
-                    <span class="nav-text">Purchases</span>
-                    <i class="bi bi-chevron-down ms-auto"></i>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">
-                    <i class="bi bi-people"></i>
-                    <span class="nav-text">HR</span>
-                    <i class="bi bi-chevron-down ms-auto"></i>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">
-                    <i class="bi bi-bank"></i>
-                    <span class="nav-text">Banking</span>
-                    <i class="bi bi-chevron-down ms-auto"></i>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">
-                    <i class="bi bi-graph-up"></i>
-                    <span class="nav-text">Reports</span>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">
-                    <i class="bi bi-rocket"></i>
-                    <span class="nav-text">Apps</span>
-                </a>
-            </li> -->
-        </ul>
+    <div class="sidebar-header p-3 text-center">
+        <img src="{{ asset('images/iiiq-logo.jpeg') }}" alt="Logo" class="sidebar-logo">
+        <h5 class="company-name">iiiQBets.</h5>
+        <i class="bi bi-chevron-left collapse-icon" id="collapseBtn"></i>
     </div>
+    <ul class="nav flex-column sidebar-nav">
+        <li class="nav-item">
+            <a class="nav-link active" href="{{ route('resident.home') }}">
+                <i class="bi bi-house-door"></i>
+                <span class="nav-text">Dashboard</span>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{{ route('resident.visitors.index') }}">
+                <i class="bi bi-person-lines-fill"></i>
+                <span class="nav-text">Visitors</span>
+                <i class="bi bi-chevron-down ms-auto"></i>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{{ route('resident.entry-passes.index') }}">
+                <i class="bi bi-ticket"></i>
+                <span class="nav-text">Entry Passes</span>
+                <i class="bi bi-chevron-down ms-auto"></i>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{{ route('resident.directory.neighbours') }}">
+                <i class="bi bi-journal-text"></i>
+                <span class="nav-text">Directory</span>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{{ route('resident.facilities.index') }}">
+                <i class="bi bi-building"></i>
+                <span class="nav-text">Facilities</span>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{{ route('resident.activities.index') }}">
+                <i class="bi bi-calendar-event"></i>
+                <span class="nav-text">Activities</span>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{{ route('resident.expenses.index') }}">
+                <i class="bi bi-cash"></i>
+                <span class="nav-text">Apartment Expenditures</span>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{{ route('resident.helpdesk.index') }}">
+                <i class="bi bi-headset"></i>
+                <span class="nav-text">HelpDesk</span>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{{ route('resident.document.index') }}">
+                <i class="bi bi-file-earmark"></i>
+                <span class="nav-text">Documents</span>
+            </a>
+        </li>
+        <!-- <li class="nav-item">
+            <a class="nav-link" href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                <i class="bi bi-box-arrow-right"></i>
+                <span class="nav-text">Logout</span>
+            </a>
+        </li> -->
+
+        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+            @csrf
+        </form>
+    </ul>
+</div>
+
 </div>
 
     </div>
