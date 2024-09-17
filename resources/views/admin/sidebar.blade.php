@@ -46,7 +46,7 @@
     <div class="sidebar d-flex flex-column" id="sidebar">
         <div class="sidebar-header p-3 text-center">
             <img src="{{ asset('images/iiiq-logo.jpeg') }}" alt="Logo" class="sidebar-logo">
-            <h5 class="company-name">iiiQBets.</h5>
+            <h5 class="company-name">iiiQBets</h5>
             <i class="bi bi-chevron-left collapse-icon" id="collapseBtn"></i>
         </div>
         <ul class="nav flex-column sidebar-nav">
