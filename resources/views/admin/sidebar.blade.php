@@ -91,7 +91,7 @@
             
 
 <li class="nav-item">   
-<a class="nav-link" href="{{ route('income') }}">
+<a class="nav-link" href="{{ route('admin.resident_accounts.index') }}">
 
         <i class="bi bi-cart"></i>
         <span class="nav-text"> Maintenance</span>
