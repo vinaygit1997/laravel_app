@@ -82,8 +82,8 @@
                     <i class="bi bi-file-earmark icon"></i>
                 </div>
                 <div class="icon-container" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                    <i class="bi bi-box-arrow-right icon"></i>
-                </div>
+          <i class="bi bi-box-arrow-right icon"></i>
+        </div>
             </div>
 
             <div class="sidebar d-flex flex-column" id="sidebar">
