@@ -309,22 +309,98 @@ use App\Http\Controllers\HelpDeskController;
 
 Route::get('/resident/helpdesk', [HelpDeskController::class, 'index'])->name('resident.helpdesk.index');
 
+Route::get('/resident/moderate-forum', function () {
+    return view('resident.moderate-forum.moderate-forum');
+})->name('resident.moderate-forum.moderate-forum');
+// use App\Http\Controllers\ParkingSlotController;
 
-use App\Http\Controllers\ParkingSlotController;
+// Route::get('/admin/parking-slot', [ParkingSlotController::class, 'index'])->name('admin.parking-slot.index');
+// Route::get('/admin/parking-slot/vehicles', [ParkingSlotController::class, 'index'])->name('admin.parking-slot.manage-vehicles');
+Route::get('/admin/parking-slot', function () {
+    return view('admin.parking-slot.index');
+})->name('admin.parking-slot.index');
+Route::get('/admin/parking-slot/vehicles', function () {
+    return view('admin.parking-slot.manage-vehicles');
+})->name('admin.parking-slot.manage-vehicles');
+Route::get('/admin/parking-slot/vehicles-data', function () {
+    return view('admin.parking-slot.vehicles-data');
+})->name('admin.parking-slot.vehicles-data');
 
-Route::get('/admin/parking-slot', [ParkingSlotController::class, 'index'])->name('admin.parking-slot.index');
 
 
-Route::get('/admin/staff', function () {
-    return view('admin.staff.view-staff');
-})->name('admin.staff.view-staff');
-Route::get('/admin/staff/create', function () {
-    return view('admin.staff.create');
-})->name('admin.staff.create');
 
-Route::get('/admin/vendors', function () {
-    return view('admin.vendors.view-vendors');
-})->name('admin.vendors.view-vendors');
-Route::get('/admin/vendors/create', function () {
-    return view('admin.vendors.create');
-})->name('admin.vendors.create');
+Route::get('/admin/projects', function () {
+    return view('admin.projects.projectmeeting');
+})->name('admin.projects.projectmeeting');
+Route::get('/admin/projects/createproject', function () {
+    return view('admin.projects.createproject');
+})->name('admin.projects.createproject');
+Route::get('/admin/projects/createmeeting', function () {
+    return view('admin.projects.createmeeting');
+})->name('admin.projects.createmeeting');
+Route::get('/admin/projects/task', function () {
+    return view('admin.projects.task');
+})->name('admin.projects.task');
+Route::get('/admin/projects/addtask', function () {
+    return view('admin.projects.addtask');
+})->name('admin.projects.addtask');
+Route::get('/admin/admin-files/resident-docs', function () {
+    return view('admin.admin-files.resident-docs');
+})->name('admin.admin-files.resident-docs');
+
+use App\Http\Controllers\ResidentAccountController;
+
+// Display a listing of resident accounts
+// Display a listing of resident accounts
+Route::get('admin/resident_accounts', [App\Http\Controllers\ResidentAccountController::class, 'index'])->name('admin.resident_accounts.index');
+
+// Show the form for creating a new resident account
+Route::get('admin/resident_accounts/create', [App\Http\Controllers\ResidentAccountController::class, 'create'])->name('admin.resident_accounts.create');
+
+// Store a newly created resident account in storage
+Route::post('admin/resident_accounts', [App\Http\Controllers\ResidentAccountController::class, 'store'])->name('admin.resident_accounts.store');
+
+// Show the form for editing a specific resident account
+Route::get('admin/resident_accounts/{id}/edit', [App\Http\Controllers\ResidentAccountController::class, 'edit'])->name('admin.resident_accounts.edit');
+
+// Update a specific resident account in storage
+Route::put('admin/resident_accounts/{id}', [App\Http\Controllers\ResidentAccountController::class, 'update'])->name('admin.resident_accounts.update');
+
+// Delete a specific resident account from storage
+Route::delete('admin/resident_accounts/{id}', [App\Http\Controllers\ResidentAccountController::class, 'destroy'])->name('admin.resident_accounts.destroy');
+
+use App\Http\Controllers\VendorController;
+
+// Admin vendor routes with prefix and name
+Route::prefix('admin/vendors')->name('admin.vendors.')->group(function () {
+    Route::get('/', [VendorController::class, 'index'])->name('view-vendors');
+    Route::get('create', [VendorController::class, 'create'])->name('create');
+    Route::post('store', [VendorController::class, 'store'])->name('store');
+    Route::get('edit/{vendor}', [VendorController::class, 'edit'])->name('edit');
+    Route::put('update/{vendor}', [VendorController::class, 'update'])->name('update');
+    Route::delete('destroy/{vendor}', [VendorController::class, 'destroy'])->name('destroy');
+    Route::get('{vendor}', [VendorController::class, 'show'])->name('show'); // Route for viewing a vendor
+});
+
+
+
+use App\Http\Controllers\StaffController;
+
+Route::prefix('admin/staff')->name('admin.staff.')->group(function() {
+    Route::get('/', [StaffController::class, 'index'])->name('view-staff');           // List staff
+    Route::get('/create', [StaffController::class, 'create'])->name('create');       // Create form
+    Route::post('/store', [StaffController::class, 'store'])->name('store');         // Store data
+    Route::get('/{id}', [StaffController::class, 'show'])->name('show');             // Show staff
+    Route::get('/{id}/edit', [StaffController::class, 'edit'])->name('edit');         // Edit form
+    Route::put('/{id}', [StaffController::class, 'update'])->name('update');         // Update data
+    Route::delete('/{id}', [StaffController::class, 'destroy'])->name('destroy');    // Delete data
+});
+
+
+// Route::get('/admin/staff', function () {
+//     return view('admin.staff.view-staff');
+// })->name('admin.staff.view-staff');
+// Route::get('/admin/staff/create', function () {
+//     return view('admin.staff.create');
+// })->name('admin.staff.create');
+

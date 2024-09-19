@@ -48,19 +48,19 @@
             color: #007bff;
         }
 
-        .admin-dashboard .icon-container {
+        .admin-dashboard .icon-card {
             display: flex;
             align-items: center;
             margin-bottom: 15px;
         }
 
-        .admin-dashboard .icon-container i {
+        .admin-dashboard .icon-card i {
             font-size: 30px;
             margin-right: 15px;
             color: #007bff;
         }
 
-        .admin-dashboard .icon-container span {
+        .admin-dashboard .icon-card span {
             font-size: 18px;
             font-weight: 500;
             color: #333;
@@ -130,12 +130,12 @@
         }
 
         @media (max-width: 768px) {
-            .admin-dashboard .icon-container {
+            .admin-dashboard .icon-card {
                 flex-direction: column;
                 align-items: center;
             }
 
-            .admin-dashboard .icon-container i {
+            .admin-dashboard .icon-card i {
                 margin-bottom: 10px;
             }
 
@@ -153,13 +153,13 @@
 
 <body class="admin-dashboard">
 
-<div class="container mt-5">
+<div class="container mt-2">
     <!-- Header Icons -->
     <div class="row">
         <!-- SMS -->
         <div class="col-md-4">
             <div class="card p-4 text-center">
-                <div class="icon-container justify-content-center">
+                <div class="icon-card justify-content-center">
                     <i class="fas fa-sms"></i>
                 </div>
                 <h5 class="mt-3">SMS</h5>
@@ -169,7 +169,7 @@
         <!-- Instant Notification -->
         <div class="col-md-4">
             <div class="card p-4 text-center">
-                <div class="icon-container justify-content-center">
+                <div class="icon-card justify-content-center">
                     <i class="fas fa-paper-plane"></i>
                 </div>
                 <h5 class="mt-3">Instant Notification</h5>
@@ -179,7 +179,7 @@
         <!-- Post Announcement -->
         <div class="col-md-4">
             <div class="card p-4 text-center">
-                <div class="icon-container justify-content-center">
+                <div class="icon-card justify-content-center">
                     <i class="fas fa-bullhorn"></i>
                 </div>
                 <h5 class="mt-3">Post Announcement</h5>

@@ -108,6 +108,15 @@
     </a>
 </li>
 
+<li class="nav-item">
+    <a class="nav-link" href="{{ route('resident.moderate-forum.moderate-forum') }}">
+        <i class="bi bi-cart"></i>
+        <span class="nav-text">Moderate Forum</span>
+        <!-- <i class="bi bi-chevron-down ms-auto"></i> -->
+    </a>
+</li>
+
+
             <li class="nav-item">
     <a class="nav-link" href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
         <i class="bi bi-truck"></i>

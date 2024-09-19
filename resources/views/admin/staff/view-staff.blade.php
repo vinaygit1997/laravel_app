@@ -1,3 +1,6 @@
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+
 @extends('layouts.admin')
 
 @section('title', 'Staff')
@@ -6,12 +9,10 @@
 
 <div class="container mt-3">
   <div class="d-flex justify-content-between align-items-center mb-3">
-    <!-- Align h2 to the left -->
     <h2 class="mb-0">Staff Details</h2>
-    <!-- Align Add Staff Button to the right -->
     <a href="{{ route('admin.staff.create') }}" class="btn btn-primary">Add Staff</a>
   </div>    
-  <table class="table table-striped">
+  <table class="table table-stripped">
     <thead>
       <tr>
         <th>S.No</th>
@@ -19,104 +20,57 @@
         <th>Category</th>
         <th>Gender</th>
         <th>Contact</th>
-        <th>Email ID</th>
-        <th>Known Languages</th>
+        <th>Email</th>
+        <th>Languages</th>
         <th>Doj</th>
         <th>Aadhar Number</th>
         <th>Status</th>
-        <th>Actions</th> <!-- New column for Edit/Delete icons -->
+        <th>Actions</th>
       </tr>
     </thead>
     <tbody>
-     <tr>
-        <td>1</td>
-        <td>Sumith</td>
-        <td>Floor Manager</td>
-        <td>Male</td>
-        <td>8186886911</td>
-        <td>sumith@gmail.com</td>
-        <td>English, Hindi</td>
-        <td>12/03/2024</td>
-        
-        <td>14785236958</td>
-        <td>Active</td>
+      @foreach ($staff as $staffMember)
+      <tr>
+        <td>{{ $loop->iteration }}</td>
+        <td>{{ $staffMember->name }}</td>
+        <td>{{ $staffMember->category }}</td>
+        <td>{{ $staffMember->gender }}</td>
+        <td>{{ $staffMember->contact }}</td>
+        <td>{{ $staffMember->email }}</td>
+        <td>{{ $staffMember->languages }}</td>
+        <td>{{ \Carbon\Carbon::parse($staffMember->doj)->format('d-m-Y') }}</td>
+        <td>{{ $staffMember->aadhar }}</td>
+        <td>{{ $staffMember->status }}</td>
         <td>
-          <a href="#" class="text-primary"><i class="bi bi-pencil-fill"></i></a>
-          <a href="#" class="text-danger ms-3"><i class="bi bi-trash-fill"></i></a>
-        </td>
-     </tr>
+          <!-- View Button with icon -->
+          <a href="{{ route('admin.staff.show', $staffMember->id) }}" class="btn btn-info btn-sm">
+            <i class="fas fa-eye"></i>
+          </a>
 
-     <tr>
-        <td>2</td>
-        <td>Harini</td>
-        <td>Cleaner</td>
-        <td>Female</td>
-        <td>8099834232</td>
-        <td>harini@gmail.com</td>
-        <td>Telugu</td>
-       
-        <td>10/05/2024</td>
-        <td>321456789258</td>
-        <td>Active</td>
-        <td>
-          <a href="#" class="text-primary"><i class="bi bi-pencil-fill"></i></a>
-          <a href="#" class="text-danger ms-3"><i class="bi bi-trash-fill"></i></a>
-        </td>
-     </tr>
-      
-     <tr>
-        <td>3</td>
-        <td>Akshitha</td>
-        <td>Cleaner</td>
-        <td>Female</td>
-        <td>8099834242</td>
-        <td>akhitha@gmail.com</td>
-        <td>Telugu</td>
-       
-        <td>25/05/2024</td>
-        <td>321456789258</td>
-        <td>Active</td>
-        <td>
-          <a href="#" class="text-primary"><i class="bi bi-pencil-fill"></i></a>
-          <a href="#" class="text-danger ms-3"><i class="bi bi-trash-fill"></i></a>
-        </td>
-     </tr>
+          <!-- Edit Button with icon -->
+          <a href="{{ route('admin.staff.edit', $staffMember->id) }}" class="btn btn-warning btn-sm">
+            <i class="fas fa-edit"></i>
+          </a>
 
-     <tr>
-        <td>4</td>
-        <td>Priya</td>
-        <td>Gardener</td>
-        <td>Female</td>
-        <td>987456123</td>
-        <td>priya@gmail.com</td>
-        <td>English</td>
-        <td>18/08/2024</td>
-        <td>85236974156</td>
-        <td>Active</td>
-        <td>
-          <a href="#" class="text-primary"><i class="bi bi-pencil-fill"></i></a>
-          <a href="#" class="text-danger ms-3"><i class="bi bi-trash-fill"></i></a>
+          <!-- Delete Button with confirmation dialog -->
+          <form action="{{ route('admin.staff.destroy', $staffMember->id) }}" method="POST" style="display:inline;">
+            @csrf
+            @method('DELETE')
+            <button type="submit" class="btn btn-danger btn-sm" onclick="return confirmDelete()">
+              <i class="fas fa-trash-alt"></i>
+            </button>
+          </form>
         </td>
-     </tr>
-
-     <tr>
-        <td>5</td>
-        <td>Karan</td>
-        <td>Security</td>
-        <td>Male</td>
-        <td>9354178963</td>
-        <td>karan@gmail.com</td>
-        <td>Hindi</td>
-        
-        <td>28/01/2024</td>
-        <td>985231476985</td>
-        <td>Active</td>
-        <td>
-          <a href="#" class="text-primary"><i class="bi bi-pencil-fill"></i></a>
-          <a href="#" class="text-danger ms-3"><i class="bi bi-trash-fill"></i></a>
-        </td>
-     </tr>
+      </tr>
+      @endforeach
     </tbody>
   </table>
 </div>
+
+<script>
+function confirmDelete() {
+  return confirm('Are you sure you want to delete this staff member?');
+}
+</script>
+
 @endsection

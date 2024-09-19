@@ -36,160 +36,154 @@
         <div class="icon-container">
             <i class="bi bi-file-earmark icon"></i>
         </div>
+
+        <div class="icon-container" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+          <i class="bi bi-box-arrow-right icon"></i>
+        </div>
+     
     </div>
 
     <div class="sidebar d-flex flex-column" id="sidebar">
         <div class="sidebar-header p-3 text-center">
             <img src="{{ asset('images/iiiq-logo.jpeg') }}" alt="Logo" class="sidebar-logo">
-            <h5 class="company-name">IIIQBETS.</h5>
+            <h5 class="company-name">iiiQBets</h5>
             <i class="bi bi-chevron-left collapse-icon" id="collapseBtn"></i>
         </div>
         <ul class="nav flex-column sidebar-nav">
-            <li class="nav-item">
-                <a class="nav-link active" href="{{ route('admin.home') }}">
-                    <i class="bi bi-house-door"></i>
-                    <span class="nav-text">Dashboard</span>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="{{ route('admin.show_users') }}">
-                    <i class="bi bi-box"></i>
-                    <span class="nav-text">View Users</span>
-                    <i class="bi bi-chevron-down ms-auto"></i>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="{{ route('admin.categories.index') }}">
-                    <i class="bi bi-cart"></i>
-                    <span class="nav-text">Categories</span>
-                    <i class="bi bi-chevron-down ms-auto"></i>
-                </a>
-            </li>
+
+    <li class="nav-item">
+        <a class="nav-link active" href="{{ route('admin.home') }}">
+            <i class="bi bi-house-door"></i>
+            <span class="nav-text">Dashboard</span>
+        </a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="{{ route('admin.show_users') }}">
+            <i class="bi bi-people"></i>
+            <span class="nav-text">View Users</span>
+            <i class="bi bi-chevron-down ms-auto"></i>
+        </a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="{{ route('admin.categories.index') }}">
+            <i class="bi bi-list-ul"></i>
+            <span class="nav-text">Categories</span>
+            <i class="bi bi-chevron-down ms-auto"></i>
+        </a>
+    </li>
+    
+    <li class="nav-item">
+        <a class="nav-link" href="{{ route('admin.newuser') }}">
+            <i class="bi bi-person-plus"></i>
+            <span class="nav-text">New User</span>
+            <i class="bi bi-chevron-down ms-auto"></i>
+        </a>
+    </li>
+    
+    <li class="nav-item">   
+        <a class="nav-link" href="{{ route('expenses.index') }}">
+            <i class="bi bi-currency-dollar"></i>
+            <span class="nav-text">Expenses</span>
+            <i class="bi bi-chevron-down ms-auto"></i>
+        </a>
+    </li>
+
             
-            <li class="nav-item">
-                <a class="nav-link" href="{{ route('admin.register.resident') }}">
-                    <i class="bi bi-cart"></i>
-                    <span class="nav-text">New User</span>
-                    <i class="bi bi-chevron-down ms-auto"></i>
-                </a>
-            </li>
-            <li class="nav-item">   
-    <a class="nav-link" href="{{ route('expenses.index') }}">
-        <i class="bi bi-cart"></i>
-        <span class="nav-text">Expenses</span>
-        <i class="bi bi-chevron-down ms-auto"></i>
-    </a>
-</li>
 
-<li class="nav-item">   
-<a class="nav-link" href="{{ route('income') }}">
+    <li class="nav-item">   
+        <a class="nav-link" href="{{ route('admin.resident_accounts.index') }}">
+            <i class="bi bi-tools"></i>
+            <span class="nav-text">Maintenance</span>
+            <i class="bi bi-chevron-down ms-auto"></i>
+        </a>
+    </li>
 
-        <i class="bi bi-cart"></i>
-        <span class="nav-text"> Maintenance</span>
-        <i class="bi bi-chevron-down ms-auto"></i>
-    </a>
-</li>
+    <li class="nav-item">   
+        <a class="nav-link" href="{{ route('flats') }}">
+            <i class="bi bi-building"></i>
+            <span class="nav-text">Flats Registration</span>
+            <i class="bi bi-chevron-down ms-auto"></i>
+        </a>
+    </li>
 
-            <li class="nav-item">   
-    <a class="nav-link" href="{{ route('flats') }}">
-        <i class="bi bi-cart"></i>
-        <span class="nav-text">Flats Registration</span>
-        <i class="bi bi-chevron-down ms-auto"></i>
-    </a>
-</li>
+    <li class="nav-item">   
+        <a class="nav-link" href="{{ route('admin.facilities.index') }}">
+            <i class="bi bi-gear"></i>
+            <span class="nav-text">Facilities</span>
+            <i class="bi bi-chevron-down ms-auto"></i>
+        </a>
+    </li>
 
-<li class="nav-item">   
-    <a class="nav-link" href="{{ route('admin.facilities.index') }}">
-        <i class="bi bi-cart"></i>
-        <span class="nav-text">Facilities</span>
-        <i class="bi bi-chevron-down ms-auto"></i>
-    </a>
-</li>
+    <li class="nav-item">   
+        <a class="nav-link" href="{{ route('admin.activities.index') }}">
+            <i class="bi bi-calendar-check"></i>
+            <span class="nav-text">Activities</span>
+            <i class="bi bi-chevron-down ms-auto"></i>
+        </a>
+    </li>
 
-<li class="nav-item">   
-    <a class="nav-link" href="{{ route('admin.activities.index') }}">
-        <i class="bi bi-cart"></i>
-        <span class="nav-text">Activities</span>
-        <i class="bi bi-chevron-down ms-auto"></i>
-    </a>
-</li>
+    <li class="nav-item">   
+        <a class="nav-link" href="{{ route('admin.parking-slot.index') }}">
+            <i class="bi bi-car-front"></i>
+            <span class="nav-text">Parking</span>
+            <i class="bi bi-chevron-down ms-auto"></i>
+        </a>
+    </li>
 
-<li class="nav-item">   
-    <a class="nav-link" href="{{ route('admin.parking-slot.index') }}">
-        <i class="bi bi-cart"></i>
-        <span class="nav-text">Parking</span>
-        <i class="bi bi-chevron-down ms-auto"></i>
-    </a>
-</li>
+    <li class="nav-item">   
+        <a class="nav-link" href="{{ route('admin.helpdesk.opendesk') }}">
+            <i class="bi bi-envelope-open"></i>
+            <span class="nav-text">Open Request</span>
+        </a>
+    </li>
 
-<li class="nav-item">   
-    <a class="nav-link" href="{{ route('admin.helpdesk.opendesk') }}">
-        <i class="bi bi-cart"></i>
-        <span class="nav-text">Open Request</span>
-        <!-- <i class="bi bi-chevron-down ms-auto"></i> -->
-    </a>
-</li>
+
 <li class="nav-item">   
     <!-- <a class="nav-link" href="{{ route('admin.staff.view-staff') }}"> -->
     <a class="nav-link" href="{{ route('admin.staff.view-staff') }}">
-        <i class="bi bi-cart"></i>
+        <i class="bi bi-people"></i>
         <span class="nav-text">Staff Manager</span>
         <i class="bi bi-chevron-down ms-auto"></i>
     </a>
 </li>
 <li class="nav-item">   
     <a class="nav-link" href="{{ route('admin.vendors.view-vendors') }}">
-        <i class="bi bi-cart"></i>
+        <i class="bi bi-shop"></i>
         <span class="nav-text">Vendor Master</span>
         <i class="bi bi-chevron-down ms-auto"></i>
     </a>
 </li>
-            <li class="nav-item">
+
+<li class="nav-item">   
+    <a class="nav-link" href="{{ route('admin.projects.projectmeeting') }}">
+        <i class="bi bi-kanban"></i>
+        <span class="nav-text">Projects&Meetings</span>
+        
+    </a>
+</li>
+
+<li class="nav-item">   
+    <a class="nav-link" href="{{ route('admin.admin-files.resident-docs') }}">
+        <i class="bi bi-files"></i>
+        <span class="nav-text">Admin Files</span>
+        
+    </a>
+</li>
+            <!-- <li class="nav-item">
     <a class="nav-link" href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
         <i class="bi bi-truck"></i>
         <span class="nav-text">Logout</span>
         <i class="bi bi-chevron-down ms-auto"></i>
     </a>
-</li>
+</li> -->
 
-<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-    @csrf
-</form>
 
-            <!-- <li class="nav-item">
-                <a class="nav-link" href="#">
-                    <i class="bi bi-truck"></i>
-                    <span class="nav-text">Purchases</span>
-                    <i class="bi bi-chevron-down ms-auto"></i>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">
-                    <i class="bi bi-people"></i>
-                    <span class="nav-text">HR</span>
-                    <i class="bi bi-chevron-down ms-auto"></i>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">
-                    <i class="bi bi-bank"></i>
-                    <span class="nav-text">Banking</span>
-                    <i class="bi bi-chevron-down ms-auto"></i>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">
-                    <i class="bi bi-graph-up"></i>
-                    <span class="nav-text">Reports</span>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">
-                    <i class="bi bi-rocket"></i>
-                    <span class="nav-text">Apps</span>
-                </a>
-            </li> -->
-        </ul>
+
+    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+        @csrf
+    </form>
+</ul>
+
     </div>
 </div>
 

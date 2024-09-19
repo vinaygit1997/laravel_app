@@ -9,7 +9,7 @@
     
     <a href="{{ route('admin.vendors.view-vendors') }}" class="btn btn-primary">View Vendors</a>
   </div> 
-    <form action="{{ route('expenses.store') }}" method="POST" enctype="multipart/form-data">
+<form action="{{ route('admin.vendors.store') }}" method="POST" enctype="multipart/form-data">
         @csrf
 
         <!-- Vendor Details -->

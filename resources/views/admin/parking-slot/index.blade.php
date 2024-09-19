@@ -1,5 +1,5 @@
 @extends('layouts.admin')
-
+@section('title', 'Parking')
 @section('content')
 
 <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
@@ -80,7 +80,8 @@
 <div class="container mt-4">
     <div class="d-flex justify-content-between align-items-center mb-3">
         <h4>Manage Parking Slots</h4>
-        <button class="btn btn-success" onclick="openAddModal()">+</button>
+        <button class="btn btn-success" onclick="openAddModal()">Add Slots</button>
+       <a href="{{ route('admin.parking-slot.manage-vehicles') }}" class="btn btn-primary">Manage Vehicles</a>
     </div>
     <div class="parking-slot-table-wrapper table-responsive">
         <table id="categoryTable" class="table table-bordered">
