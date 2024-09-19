@@ -4,19 +4,6 @@
 <div class="container">
     <h1>Expenses</h1>
 
-    <!-- Month Filter Form -->
-    <!-- <div class="mb-3">
-        <form action="{{ route('expenses.index') }}" method="GET" class="form-inline">
-            <div class="form-group d-flex align-items-center">
-    <label for="month" class="mr-2">Filter by Month:</label>
-    <input type="month" id="month" name="month" class="form-control" value="{{ request('month') }}">
-    <button type="submit" class="btn btn-primary ml-2">Filter</button>
-</div>
-
-            
-        </form>
-    </div> -->
-
     <!-- Button to Add New Expense -->
     <div class="mb-3">
         <a href="{{ route('expenses.create') }}" class="btn btn-primary">Add New Expense</a>
@@ -31,6 +18,7 @@
                 <th>Amount</th>
                 <th>Paid Date</th>
                 <th>File</th>
+                <th>Actions</th>
             </tr>
         </thead>
         <tbody>
@@ -43,10 +31,19 @@
                 <td>{{ $expense->paid_date }}</td>
                 <td>
                     @if($expense->file_path)
-                        <a href="{{ Storage::url($expense->file_path) }}" target="_blank">View File</a>
+                    <a href="{{ asset('expenses/' . $expense->file_path) }}" target="_blank">View File</a>
                     @else
                         No file uploaded
                     @endif
+                </td>
+                <td>
+                    <a href="{{ route('expenses.edit', $expense->id) }}" class="btn btn-warning btn-sm">Edit</a>
+
+                    <form action="{{ route('expenses.destroy', $expense->id) }}" method="POST" style="display:inline-block;">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this expense?')">Delete</button>
+                    </form>
                 </td>
             </tr>
             @endforeach

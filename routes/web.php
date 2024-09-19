@@ -253,9 +253,11 @@ Route::get('/', function () {
 use App\Http\Controllers\ExpenseController;
 
 Route::get('/expenses/create', [ExpenseController::class, 'create'])->name('expenses.create');
-Route::post('/expenses', [ExpenseController::class, 'store'])->name('expenses.store');
-Route::get('/expenses', [ExpenseController::class, 'index'])->name('expenses.index');
-
+Route::post('/expense', [ExpenseController::class, 'store'])->name('expenses.store');
+Route::get('/expense', [ExpenseController::class, 'index'])->name('expenses.index');
+Route::get('/expenses/{id}/edit', [ExpenseController::class, 'edit'])->name('expenses.edit'); // Edit route
+Route::put('/expenses/{id}', [ExpenseController::class, 'update'])->name('expenses.update'); // Update route
+Route::delete('/expenses/{id}', [ExpenseController::class, 'destroy'])->name('expenses.destroy');
 
 use App\Http\Controllers\ResidentExpenseController;
 
