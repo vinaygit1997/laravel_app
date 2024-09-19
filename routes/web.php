@@ -127,7 +127,10 @@ Route::middleware(['auth', 'user-access:admin'])->group(function () {
 
     Route::get('/admin/register-resident', [ResidentRegisterController::class, 'showRegisterResidentForm'])->name('admin.register.resident.form');
     Route::post('/admin/register-resident', [ResidentRegisterController::class, 'registerResident'])->name('admin.register.resident');
-
+Route::get('admin/view-residents', [ResidentRegisterController::class, 'viewResidents'])->name('admin.view.residents');
+Route::get('admin/resident/{id}', [ResidentRegisterController::class, 'showResident'])->name('admin.resident.show');
+Route::get('admin/resident/edit/{id}', [ResidentRegisterController::class, 'editResident'])->name('admin.resident.edit');
+Route::put('admin/resident/update/{id}', [ResidentRegisterController::class, 'updateResident'])->name('admin.resident.update');
 
     Route::get('/admin/register-watchman', [WatchmanRegisterController::class, 'showRegisterWatchmanForm'])->name('admin.register.watchman.form');
     Route::post('/admin/register-watchman', [WatchmanRegisterController::class, 'registerWatchman'])->name('admin.register.watchman');
@@ -328,17 +331,45 @@ Route::get('/resident/moderate-forum', function () {
 
 Route::get('/admin/parking-slot', [ParkingSlotController::class, 'index'])->name('admin.parking-slot.index');
 
+use App\Http\Controllers\StaffController;
 
-Route::get('/admin/staff', function () {
-    return view('admin.staff.view-staff');
-})->name('admin.staff.view-staff');
-Route::get('/admin/staff/create', function () {
-    return view('admin.staff.create');
-})->name('admin.staff.create');
+Route::prefix('admin/staff')->name('admin.staff.')->group(function() {
+    Route::get('/', [StaffController::class, 'index'])->name('view-staff');           // List staff
+    Route::get('/create', [StaffController::class, 'create'])->name('create');       // Create form
+    Route::post('/store', [StaffController::class, 'store'])->name('store');         // Store data
+    Route::get('/{id}', [StaffController::class, 'show'])->name('show');             // Show staff
+    Route::get('/{id}/edit', [StaffController::class, 'edit'])->name('edit');         // Edit form
+    Route::put('/{id}', [StaffController::class, 'update'])->name('update');         // Update data
+    Route::delete('/{id}', [StaffController::class, 'destroy'])->name('destroy');    // Delete data
+});
+use App\Http\Controllers\VendorController;
 
-Route::get('/admin/vendors', function () {
-    return view('admin.vendors.view-vendors');
-})->name('admin.vendors.view-vendors');
-Route::get('/admin/vendors/create', function () {
-    return view('admin.vendors.create');
-})->name('admin.vendors.create');
+// Admin vendor routes with prefix and name
+Route::prefix('admin/vendors')->name('admin.vendors.')->group(function () {
+    Route::get('/', [VendorController::class, 'index'])->name('view-vendors');
+    Route::get('create', [VendorController::class, 'create'])->name('create');
+    Route::post('store', [VendorController::class, 'store'])->name('store');
+    Route::get('edit/{vendor}', [VendorController::class, 'edit'])->name('edit');
+    Route::put('update/{vendor}', [VendorController::class, 'update'])->name('update');
+    Route::delete('destroy/{vendor}', [VendorController::class, 'destroy'])->name('destroy');
+    Route::get('{vendor}', [VendorController::class, 'show'])->name('show'); // Route for viewing a vendor
+});
+
+Route::get('/admin/projects', function () {
+    return view('admin.projects.projectmeeting');
+})->name('admin.projects.projectmeeting');
+Route::get('/admin/projects/createproject', function () {
+    return view('admin.projects.createproject');
+})->name('admin.projects.createproject');
+Route::get('/admin/projects/createmeeting', function () {
+    return view('admin.projects.createmeeting');
+})->name('admin.projects.createmeeting');
+Route::get('/admin/projects/task', function () {
+    return view('admin.projects.task');
+})->name('admin.projects.task');
+Route::get('/admin/projects/addtask', function () {
+    return view('admin.projects.addtask');
+})->name('admin.projects.addtask');
+Route::get('/admin/admin-files/resident-docs', function () {
+    return view('admin.admin-files.resident-docs');
+})->name('admin.admin-files.resident-docs');

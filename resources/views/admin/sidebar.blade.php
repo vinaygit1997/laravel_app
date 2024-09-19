@@ -15,29 +15,29 @@
     <div class="d-flex">
         <div class="d-flex">
     <div class="left-edge-icons">
-        <div class="icon-container">
+        <div class="icon-card">
             <i class="bi bi-person icon"></i>
         </div>
-        <div class="icon-container">
+        <div class="icon-card">
             <i class="bi bi-bell icon"></i>
         </div>
-        <div class="icon-container">
+        <div class="icon-card">
             <i class="bi bi-search icon"></i>
         </div>
-        <div class="icon-container">
+        <div class="icon-card">
             <i class="bi bi-plus icon"></i>
         </div>
-        <div class="icon-container">
+        <div class="icon-card">
             <i class="bi bi-gear icon"></i>
         </div>
-        <div class="icon-container">
+        <div class="icon-card">
             <i class="bi bi-heart icon"></i>
         </div>
-        <div class="icon-container">
+        <div class="icon-card">
             <i class="bi bi-file-earmark icon"></i>
         </div>
 
-        <div class="icon-container" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+        <div class="icon-card" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
           <i class="bi bi-box-arrow-right icon"></i>
         </div>
      
@@ -61,22 +61,22 @@
         <a class="nav-link" href="{{ route('admin.show_users') }}">
             <i class="bi bi-people"></i>
             <span class="nav-text">View Users</span>
-            <i class="bi bi-chevron-down ms-auto"></i>
+            <!-- <i class="bi bi-chevron-down ms-auto"></i> -->
         </a>
     </li>
-    <li class="nav-item">
+    <!-- <li class="nav-item">
         <a class="nav-link" href="{{ route('admin.categories.index') }}">
             <i class="bi bi-list-ul"></i>
             <span class="nav-text">Categories</span>
             <i class="bi bi-chevron-down ms-auto"></i>
         </a>
-    </li>
+    </li> -->
     
     <li class="nav-item">
-        <a class="nav-link" href="{{ route('admin.newuser') }}">
+        <a class="nav-link" href="{{ route('admin.view.residents') }}">
             <i class="bi bi-person-plus"></i>
             <span class="nav-text">New User</span>
-            <i class="bi bi-chevron-down ms-auto"></i>
+            <!-- <i class="bi bi-chevron-down ms-auto"></i> -->
         </a>
     </li>
     
@@ -84,7 +84,7 @@
         <a class="nav-link" href="{{ route('expenses.index') }}">
             <i class="bi bi-currency-dollar"></i>
             <span class="nav-text">Expenses</span>
-            <i class="bi bi-chevron-down ms-auto"></i>
+            <!-- <i class="bi bi-chevron-down ms-auto"></i> -->
         </a>
     </li>
 
@@ -95,7 +95,7 @@
 
         <i class="bi bi-cart"></i>
         <span class="nav-text"> Maintenance</span>
-        <i class="bi bi-chevron-down ms-auto"></i>
+        <!-- <i class="bi bi-chevron-down ms-auto"></i> -->
     </a>
 </li>
 
@@ -103,7 +103,7 @@
         <a class="nav-link" href="{{ route('flats') }}">
             <i class="bi bi-building"></i>
             <span class="nav-text">Flats Registration</span>
-            <i class="bi bi-chevron-down ms-auto"></i>
+            <!-- <i class="bi bi-chevron-down ms-auto"></i> -->
         </a>
     </li>
 
@@ -111,7 +111,7 @@
         <a class="nav-link" href="{{ route('admin.facilities.index') }}">
             <i class="bi bi-gear"></i>
             <span class="nav-text">Facilities</span>
-            <i class="bi bi-chevron-down ms-auto"></i>
+            <!-- <i class="bi bi-chevron-down ms-auto"></i> -->
         </a>
     </li>
 
@@ -119,7 +119,7 @@
         <a class="nav-link" href="{{ route('admin.activities.index') }}">
             <i class="bi bi-calendar-check"></i>
             <span class="nav-text">Activities</span>
-            <i class="bi bi-chevron-down ms-auto"></i>
+            <!-- <i class="bi bi-chevron-down ms-auto"></i> -->
         </a>
     </li>
 
@@ -127,7 +127,7 @@
         <a class="nav-link" href="{{ route('admin.parking-slot.index') }}">
             <i class="bi bi-car-front"></i>
             <span class="nav-text">Parking</span>
-            <i class="bi bi-chevron-down ms-auto"></i>
+            <!-- <i class="bi bi-chevron-down ms-auto"></i> -->
         </a>
     </li>
 
@@ -144,23 +144,31 @@
     <a class="nav-link" href="{{ route('admin.staff.view-staff') }}">
         <i class="bi bi-people"></i>
         <span class="nav-text">Staff Manager</span>
-        <i class="bi bi-chevron-down ms-auto"></i>
+        <!-- <i class="bi bi-chevron-down ms-auto"></i> -->
     </a>
 </li>
 <li class="nav-item">   
     <a class="nav-link" href="{{ route('admin.vendors.view-vendors') }}">
         <i class="bi bi-shop"></i>
         <span class="nav-text">Vendor Master</span>
-        <i class="bi bi-chevron-down ms-auto"></i>
+        <!-- <i class="bi bi-chevron-down ms-auto"></i> -->
     </a>
 </li>
-            <li class="nav-item">
-    <a class="nav-link" href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-        <i class="bi bi-truck"></i>
-        <span class="nav-text">Logout</span>
-        <i class="bi bi-chevron-down ms-auto"></i>
+      
+<li class="nav-item">   
+    <a class="nav-link" href="{{ route('admin.projects.projectmeeting') }}">
+        <i class="bi bi-kanban"></i>
+        <span class="nav-text">Projects&Meetings</span>
+        
     </a>
-</li> -->
+</li>
+<li class="nav-item">   
+    <a class="nav-link" href="{{ route('admin.admin-files.resident-docs') }}">
+        <i class="bi bi-files"></i>
+        <span class="nav-text">Admin Files</span>
+        
+    </a>
+</li>
 
 
 
