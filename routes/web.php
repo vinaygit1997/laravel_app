@@ -280,13 +280,23 @@ use App\Http\Controllers\Admin\FacilityController as AdminFacilityController; //
 
 Route::middleware(['auth', 'user-access:admin'])->prefix('admin')->group(function () {
     // Route to display the list of facilities
-    Route::get('/facilities', [AdminFacilityController::class, 'index'])->name('admin.facilities.index');
-
+    // Route::get('/facilities', [FacilityController::class, 'index'])->name('admin.facilities.index');
+    Route::get('/facilities', [FacilityController::class, 'index'])->name('admin.facilities.index');
+   
     // Route to show the form for adding a new facility
-    Route::get('/facilities/create', [AdminFacilityController::class, 'create'])->name('admin.facilities.create');
+    Route::get('/admin/facilities/create', [AdminFacilityController::class, 'create'])->name('admin.facilities.create');
+    
 
     // Route to handle the form submission for adding a new facility
-    Route::post('/facilities', [AdminFacilityController::class, 'store'])->name('admin.facilities.store');
+    Route::post('/admin/facilities', [FacilityController::class, 'store'])->name('admin.facilities.store');
+     
+    // Route to show the edit form
+Route::get('/facilities/{id}/edit', [FacilityController::class, 'edit'])->name('admin.facilities.edit');
+
+// Route to handle the update request
+Route::put('/facilities/{id}', [FacilityController::class, 'update'])->name('admin.facilities.update');
+
+Route::delete('/facilities/{id}', [FacilityController::class, 'destroy'])->name('admin.facilities.destroy');
 });
 
 

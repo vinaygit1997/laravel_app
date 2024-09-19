@@ -2,38 +2,78 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Facilities;
 use Illuminate\Http\Request;
 
 class FacilityController extends Controller
 {
-    // Show the facility booking form
+    // Show the list of facilities
     public function index()
     {
-        return view('resident.facilities.index'); // Corrected blade view path
+        $facilities = Facilities::all(); // Fetch all records from the facilities table
+        return view('admin.facilities.view-facilities', compact('facilities'));
     }
 
-    // Handle the form submission and check availability
-    public function checkAvailability(Request $request)
+    // Show the facility creation form
+    public function create()
     {
-        // Validate the request data
-        $validated = $request->validate([
-            'facility' => 'required|string|max:255',
-            'date' => 'required|date',
-            'time' => 'required',
-            'bookedFor' => 'required|string',
-            'communityPurpose' => 'required|string'
+        return view('admin.facilities.create');
+    }
+
+    // Handle the form submission and insert facility data
+    public function store(Request $request)
+    {
+        $request->validate([
+            'facility_name' => 'required|string|max:255',
+            'charge_per_hour' => 'required|numeric',
+            'charge_per_day' => 'required|numeric',
+            'cancel_days' => 'required|numeric',
         ]);
-
-        // Process the request here, for example, check if the facility is available.
-
-        return redirect()->route('resident.facilities.index')->with('status', 'Facility is available!');
+    
+        Facilities::create([
+            'facility_name' => $request->facility_name,
+            'charge_per_hour' => $request->charge_per_hour,
+            'charge_per_day' => $request->charge_per_day,
+            'cancel_days' => $request->cancel_days,
+        ]);
+    
+        return redirect()->route('admin.facilities.index')->with('success', 'Facility added successfully');
+    }
+  
+    // Show the facility edit form
+    public function edit($id)
+    {
+        $facility = Facilities::findOrFail($id);
+        return view('admin.facilities.edit', compact('facility'));
     }
 
-    // Show booking history
-    public function bookingHistory()
+    // Handle the facility update
+    public function update(Request $request, $id)
     {
-        // Get the user's booking history from the database
-        
-        return view('resident.facilities.booking-history'); // Corrected blade view path
+        $request->validate([
+            'facility_name' => 'required|string|max:255',
+            'charge_per_hour' => 'required|numeric',
+            'charge_per_day' => 'required|numeric',
+            'cancel_days' => 'required|numeric',
+        ]);
+    
+        $facility = Facilities::findOrFail($id);
+        $facility->update([
+            'facility_name' => $request->facility_name,
+            'charge_per_hour' => $request->charge_per_hour,
+            'charge_per_day' => $request->charge_per_day,
+            'cancel_days' => $request->cancel_days,
+        ]);
+    
+        return redirect()->route('admin.facilities.index')->with('success', 'Facility updated successfully');
+    }
+
+    // Handle the facility deletion
+    public function destroy($id)
+    {
+        $facility = Facilities::findOrFail($id);
+        $facility->delete();
+    
+        return redirect()->route('admin.facilities.index')->with('success', 'Facility deleted successfully');
     }
 }

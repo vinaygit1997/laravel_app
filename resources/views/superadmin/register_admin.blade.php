@@ -2,9 +2,12 @@
 
 
 @section('content')
+<div class="d-flex">
+@include('superadmin.sidebar')
 <div class="container">
     <div class="row">
-        @include('superadmin.sidebar')
+    
+       
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">{{ __('Register Admin') }}</div>
@@ -91,4 +94,6 @@
         </div>
     </div>
 </div>
+</div>
+
 @endsection
