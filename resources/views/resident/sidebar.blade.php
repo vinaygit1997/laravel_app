@@ -36,6 +36,16 @@
         <div class="icon-container">
             <i class="bi bi-file-earmark icon"></i>
         </div>
+        <div class="icon-container" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+          <i class="bi bi-box-arrow-right icon"></i>
+        </div>
+
+        <!-- <li class="nav-item">
+            <a class="nav-link" href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                <i class="bi bi-box-arrow-right"></i>
+                <span class="nav-text">Logout</span>
+            </a>
+        </li> -->
     </div>
 
     <div class="sidebar d-flex flex-column" id="sidebar">
@@ -108,15 +118,6 @@
     </a>
 </li>
 
-<li class="nav-item">
-    <a class="nav-link" href="{{ route('resident.moderate-forum.moderate-forum') }}">
-        <i class="bi bi-cart"></i>
-        <span class="nav-text">Moderate Forum</span>
-        <!-- <i class="bi bi-chevron-down ms-auto"></i> -->
-    </a>
-</li>
-
-
             <li class="nav-item">
     <a class="nav-link" href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
         <i class="bi bi-truck"></i>
@@ -125,44 +126,12 @@
     </a>
 </li>
 
-<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-    @csrf
-</form>
-            <!-- <li class="nav-item">
-                <a class="nav-link" href="#">
-                    <i class="bi bi-truck"></i>
-                    <span class="nav-text">Purchases</span>
-                    <i class="bi bi-chevron-down ms-auto"></i>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">
-                    <i class="bi bi-people"></i>
-                    <span class="nav-text">HR</span>
-                    <i class="bi bi-chevron-down ms-auto"></i>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">
-                    <i class="bi bi-bank"></i>
-                    <span class="nav-text">Banking</span>
-                    <i class="bi bi-chevron-down ms-auto"></i>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">
-                    <i class="bi bi-graph-up"></i>
-                    <span class="nav-text">Reports</span>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">
-                    <i class="bi bi-rocket"></i>
-                    <span class="nav-text">Apps</span>
-                </a>
-            </li> -->
-        </ul>
-    </div>
+        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+            @csrf
+        </form>
+    </ul>
+</div>
+
 </div>
 
     </div>

@@ -1,24 +1,21 @@
 @extends('layouts.admin')
 
-@section('title', 'Add New Facility')
+@section('title', 'Facilities List')
 
 @section('content')
 <div class="container">
-    <!-- <div class="card" id="facility-card">
-        <div class="d-flex justify-content-between align-items-center p-3">
-            <h5 class="mb-0">Add New Facility</h5>
-            <a href="" class="btn btn-primary mt-2">Add new Facilities </a>
+    @if(session('success'))
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            {{ session('success') }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
-    </div> -->
+    @endif
 
-    <!-- Display Facilities in a Table -->
     <div class="card mt-5">
-        
         <div class="d-flex justify-content-between align-items-center">
             <h5 class="mb-0">Facilities List</h5>
-            <a href="{{ route('admin.facilities.create') }}" class="btn btn-primary mt-2">Add new Facilities</a>
-       
-    </div>
+            <a href="{{ route('admin.facilities.create') }}" class="btn btn-primary mt-2">Add New Facility</a>
+        </div>
         <div class="card-body">
             <table class="table table-striped">
                 <thead>
@@ -28,47 +25,27 @@
                         <th>Charge Per Hour</th>
                         <th>Charge Per Day</th>
                         <th>Cancel Days</th>
-                        <!-- <th>Actions</th> -->
+                        <th>Actions</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <!-- Static Row 1 -->
-                    <tr>
-                        <td>1</td>
-                        <td>Swimming Pool</td>
-                        <td>150</td>
-                        <td>1200</td>
-                        <td>2</td>
-                        <!-- <td>
-                            <a href="#" class="btn btn-sm btn-info">Edit</a>
-                            <a href="#" class="btn btn-sm btn-danger">Delete</a>
-                        </td> -->
-                    </tr>
-                    <!-- Static Row 2 -->
-                    <tr>
-                        <td>2</td>
-                        <td>Clubhouse</td>
-                        <td>100</td>
-                        <td>800</td>
-                        <td>3</td>
-                        <!-- <td>
-                            <a href="#" class="btn btn-sm btn-info">Edit</a>
-                            <a href="#" class="btn btn-sm btn-danger">Delete</a>
-                        </td> -->
-                    </tr>
-                    <!-- Static Row 3 -->
-                    <tr>
-                        <td>3</td>
-                        <td>Gym</td>
-                        <td>200</td>
-                        <td>1600</td>
-                        <td>1</td>
-                        <!-- <td>
-                            <a href="#" class="btn btn-sm btn-info">Edit</a>
-                            <a href="#" class="btn btn-sm btn-danger">Delete</a>
-                        </td> -->
-                    </tr>
-                    <!-- Add more static rows as needed -->
+                    @foreach ($facilities as $index => $facility)
+                        <tr>
+                            <td>{{ $index + 1 }}</td>
+                            <td>{{ $facility->facility_name }}</td>
+                            <td>{{ $facility->charge_per_hour }}</td>
+                            <td>{{ $facility->charge_per_day }}</td>
+                            <td>{{ $facility->cancel_days }}</td>
+                            <td>
+                                <a href="{{ route('admin.facilities.edit', $facility->id) }}" class="btn btn-sm btn-info">Edit</a>
+                                <form action="{{ route('admin.facilities.destroy', $facility->id) }}" method="POST" style="display:inline;">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure you want to delete this facility?');">Delete</button>
+                                </form>
+                            </td>
+                        </tr>
+                    @endforeach
                 </tbody>
             </table>
         </div>

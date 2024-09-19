@@ -1,14 +1,19 @@
-@extends('layouts.app')
+<!-- @extends('layouts.app') -->
+
 
 @section('content')
+<div class="d-flex">
+@include('superadmin.sidebar')
 <div class="container">
     <div class="row">
-        @include('superadmin.sidebar')
+    
+       
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">{{ __('Register Admin') }}</div>
                 <div class="card-body">
-                    <form method="POST" action="{{ route('superadmin.register.admin') }}">
+
+                    <form action="{{ route('superadmin.register.admin') }}" method="POST">
                         @csrf
                         <!-- Apartment and Admin Details -->
                         <div class="form-group row">
@@ -89,4 +94,6 @@
         </div>
     </div>
 </div>
+</div>
+
 @endsection

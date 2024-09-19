@@ -36,12 +36,15 @@
         <div class="icon-container">
             <i class="bi bi-file-earmark icon"></i>
         </div>
+        <div class="icon-container" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+          <i class="bi bi-box-arrow-right icon"></i>
+        </div>
     </div>
 
     <div class="sidebar d-flex flex-column" id="sidebar">
         <div class="sidebar-header p-3 text-center">
             <img src="{{ asset('images/iiiq-logo.jpeg') }}" alt="Logo" class="sidebar-logo">
-            <h5 class="company-name">IIIQBETS.</h5>
+            <h5 class="company-name">iiiQBets.</h5>
             <i class="bi bi-chevron-left collapse-icon" id="collapseBtn"></i>
         </div>
         <ul class="nav flex-column sidebar-nav">
@@ -65,13 +68,13 @@
                     <i class="bi bi-chevron-down ms-auto"></i>
                 </a>
             </li> -->
-            <li class="nav-item">
+            <!-- <li class="nav-item">
     <a class="nav-link" href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
         <i class="bi bi-truck"></i>
         <span class="nav-text">Logout</span>
         <i class="bi bi-chevron-down ms-auto"></i>
     </a>
-</li>
+</li> -->
 
 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
     @csrf

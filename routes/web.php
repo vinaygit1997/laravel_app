@@ -253,9 +253,11 @@ Route::get('/', function () {
 use App\Http\Controllers\ExpenseController;
 
 Route::get('/expenses/create', [ExpenseController::class, 'create'])->name('expenses.create');
-Route::post('/expenses', [ExpenseController::class, 'store'])->name('expenses.store');
-Route::get('/expenses', [ExpenseController::class, 'index'])->name('expenses.index');
-
+Route::post('/expense', [ExpenseController::class, 'store'])->name('expenses.store');
+Route::get('/expense', [ExpenseController::class, 'index'])->name('expenses.index');
+Route::get('/expenses/{id}/edit', [ExpenseController::class, 'edit'])->name('expenses.edit'); // Edit route
+Route::put('/expenses/{id}', [ExpenseController::class, 'update'])->name('expenses.update'); // Update route
+Route::delete('/expenses/{id}', [ExpenseController::class, 'destroy'])->name('expenses.destroy');
 
 use App\Http\Controllers\ResidentExpenseController;
 
@@ -280,13 +282,23 @@ use App\Http\Controllers\Admin\FacilityController as AdminFacilityController; //
 
 Route::middleware(['auth', 'user-access:admin'])->prefix('admin')->group(function () {
     // Route to display the list of facilities
-    Route::get('/facilities', [AdminFacilityController::class, 'index'])->name('admin.facilities.index');
-
+    // Route::get('/facilities', [FacilityController::class, 'index'])->name('admin.facilities.index');
+    Route::get('/facilities', [FacilityController::class, 'index'])->name('admin.facilities.index');
+   
     // Route to show the form for adding a new facility
-    Route::get('/facilities/create', [AdminFacilityController::class, 'create'])->name('admin.facilities.create');
+    Route::get('/admin/facilities/create', [AdminFacilityController::class, 'create'])->name('admin.facilities.create');
+    
 
     // Route to handle the form submission for adding a new facility
-    Route::post('/facilities', [AdminFacilityController::class, 'store'])->name('admin.facilities.store');
+    Route::post('/admin/facilities', [FacilityController::class, 'store'])->name('admin.facilities.store');
+     
+    // Route to show the edit form
+Route::get('/facilities/{id}/edit', [FacilityController::class, 'edit'])->name('admin.facilities.edit');
+
+// Route to handle the update request
+Route::put('/facilities/{id}', [FacilityController::class, 'update'])->name('admin.facilities.update');
+
+Route::delete('/facilities/{id}', [FacilityController::class, 'destroy'])->name('admin.facilities.destroy');
 });
 
 
@@ -314,93 +326,19 @@ Route::get('/resident/moderate-forum', function () {
 })->name('resident.moderate-forum.moderate-forum');
 // use App\Http\Controllers\ParkingSlotController;
 
-// Route::get('/admin/parking-slot', [ParkingSlotController::class, 'index'])->name('admin.parking-slot.index');
-// Route::get('/admin/parking-slot/vehicles', [ParkingSlotController::class, 'index'])->name('admin.parking-slot.manage-vehicles');
-Route::get('/admin/parking-slot', function () {
-    return view('admin.parking-slot.index');
-})->name('admin.parking-slot.index');
-Route::get('/admin/parking-slot/vehicles', function () {
-    return view('admin.parking-slot.manage-vehicles');
-})->name('admin.parking-slot.manage-vehicles');
-Route::get('/admin/parking-slot/vehicles-data', function () {
-    return view('admin.parking-slot.vehicles-data');
-})->name('admin.parking-slot.vehicles-data');
+Route::get('/admin/parking-slot', [ParkingSlotController::class, 'index'])->name('admin.parking-slot.index');
 
 
+Route::get('/admin/staff', function () {
+    return view('admin.staff.view-staff');
+})->name('admin.staff.view-staff');
+Route::get('/admin/staff/create', function () {
+    return view('admin.staff.create');
+})->name('admin.staff.create');
 
-
-Route::get('/admin/projects', function () {
-    return view('admin.projects.projectmeeting');
-})->name('admin.projects.projectmeeting');
-Route::get('/admin/projects/createproject', function () {
-    return view('admin.projects.createproject');
-})->name('admin.projects.createproject');
-Route::get('/admin/projects/createmeeting', function () {
-    return view('admin.projects.createmeeting');
-})->name('admin.projects.createmeeting');
-Route::get('/admin/projects/task', function () {
-    return view('admin.projects.task');
-})->name('admin.projects.task');
-Route::get('/admin/projects/addtask', function () {
-    return view('admin.projects.addtask');
-})->name('admin.projects.addtask');
-Route::get('/admin/admin-files/resident-docs', function () {
-    return view('admin.admin-files.resident-docs');
-})->name('admin.admin-files.resident-docs');
-
-use App\Http\Controllers\ResidentAccountController;
-
-// Display a listing of resident accounts
-// Display a listing of resident accounts
-Route::get('admin/resident_accounts', [App\Http\Controllers\ResidentAccountController::class, 'index'])->name('admin.resident_accounts.index');
-
-// Show the form for creating a new resident account
-Route::get('admin/resident_accounts/create', [App\Http\Controllers\ResidentAccountController::class, 'create'])->name('admin.resident_accounts.create');
-
-// Store a newly created resident account in storage
-Route::post('admin/resident_accounts', [App\Http\Controllers\ResidentAccountController::class, 'store'])->name('admin.resident_accounts.store');
-
-// Show the form for editing a specific resident account
-Route::get('admin/resident_accounts/{id}/edit', [App\Http\Controllers\ResidentAccountController::class, 'edit'])->name('admin.resident_accounts.edit');
-
-// Update a specific resident account in storage
-Route::put('admin/resident_accounts/{id}', [App\Http\Controllers\ResidentAccountController::class, 'update'])->name('admin.resident_accounts.update');
-
-// Delete a specific resident account from storage
-Route::delete('admin/resident_accounts/{id}', [App\Http\Controllers\ResidentAccountController::class, 'destroy'])->name('admin.resident_accounts.destroy');
-
-use App\Http\Controllers\VendorController;
-
-// Admin vendor routes with prefix and name
-Route::prefix('admin/vendors')->name('admin.vendors.')->group(function () {
-    Route::get('/', [VendorController::class, 'index'])->name('view-vendors');
-    Route::get('create', [VendorController::class, 'create'])->name('create');
-    Route::post('store', [VendorController::class, 'store'])->name('store');
-    Route::get('edit/{vendor}', [VendorController::class, 'edit'])->name('edit');
-    Route::put('update/{vendor}', [VendorController::class, 'update'])->name('update');
-    Route::delete('destroy/{vendor}', [VendorController::class, 'destroy'])->name('destroy');
-    Route::get('{vendor}', [VendorController::class, 'show'])->name('show'); // Route for viewing a vendor
-});
-
-
-
-use App\Http\Controllers\StaffController;
-
-Route::prefix('admin/staff')->name('admin.staff.')->group(function() {
-    Route::get('/', [StaffController::class, 'index'])->name('view-staff');           // List staff
-    Route::get('/create', [StaffController::class, 'create'])->name('create');       // Create form
-    Route::post('/store', [StaffController::class, 'store'])->name('store');         // Store data
-    Route::get('/{id}', [StaffController::class, 'show'])->name('show');             // Show staff
-    Route::get('/{id}/edit', [StaffController::class, 'edit'])->name('edit');         // Edit form
-    Route::put('/{id}', [StaffController::class, 'update'])->name('update');         // Update data
-    Route::delete('/{id}', [StaffController::class, 'destroy'])->name('destroy');    // Delete data
-});
-
-
-// Route::get('/admin/staff', function () {
-//     return view('admin.staff.view-staff');
-// })->name('admin.staff.view-staff');
-// Route::get('/admin/staff/create', function () {
-//     return view('admin.staff.create');
-// })->name('admin.staff.create');
-
+Route::get('/admin/vendors', function () {
+    return view('admin.vendors.view-vendors');
+})->name('admin.vendors.view-vendors');
+Route::get('/admin/vendors/create', function () {
+    return view('admin.vendors.create');
+})->name('admin.vendors.create');

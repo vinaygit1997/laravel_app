@@ -80,9 +80,10 @@
 <div class="container mt-4">
     <div class="d-flex justify-content-between align-items-center mb-3">
         <h4>Manage Parking Slots</h4>
-        <button class="btn btn-success" onclick="openAddModal()">Add Slots</button>
-       <a href="{{ route('admin.parking-slot.manage-vehicles') }}" class="btn btn-primary">Manage Vehicles</a>
+        <button class="btn btn-success" onclick="openAddModal()">+</button>
     </div>
+</div>
+
     <div class="parking-slot-table-wrapper table-responsive">
         <table id="categoryTable" class="table table-bordered">
             <thead class="thead-light">

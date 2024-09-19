@@ -90,13 +90,14 @@
 
             
 
-    <li class="nav-item">   
-        <a class="nav-link" href="{{ route('admin.resident_accounts.index') }}">
-            <i class="bi bi-tools"></i>
-            <span class="nav-text">Maintenance</span>
-            <i class="bi bi-chevron-down ms-auto"></i>
-        </a>
-    </li>
+<li class="nav-item">   
+<a class="nav-link" href="{{ route('income') }}">
+
+        <i class="bi bi-cart"></i>
+        <span class="nav-text"> Maintenance</span>
+        <i class="bi bi-chevron-down ms-auto"></i>
+    </a>
+</li>
 
     <li class="nav-item">   
         <a class="nav-link" href="{{ route('flats') }}">
@@ -153,23 +154,7 @@
         <i class="bi bi-chevron-down ms-auto"></i>
     </a>
 </li>
-
-<li class="nav-item">   
-    <a class="nav-link" href="{{ route('admin.projects.projectmeeting') }}">
-        <i class="bi bi-kanban"></i>
-        <span class="nav-text">Projects&Meetings</span>
-        
-    </a>
-</li>
-
-<li class="nav-item">   
-    <a class="nav-link" href="{{ route('admin.admin-files.resident-docs') }}">
-        <i class="bi bi-files"></i>
-        <span class="nav-text">Admin Files</span>
-        
-    </a>
-</li>
-            <!-- <li class="nav-item">
+            <li class="nav-item">
     <a class="nav-link" href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
         <i class="bi bi-truck"></i>
         <span class="nav-text">Logout</span>
