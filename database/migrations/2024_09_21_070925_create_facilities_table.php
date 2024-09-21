@@ -16,7 +16,8 @@ class CreateFacilitiesTable extends Migration
         Schema::create('facilities', function (Blueprint $table) {
             $table->id();
             $table->string('facility_name');
-            $table->time('time_slot'); // This defines the 'time_slot' column as TIME
+            $table->time('start_time'); 
+            $table->time('end_time'); 
             $table->decimal('charge_per_day', 8, 2);
             $table->integer('cancel_days');
             $table->timestamps(); // For created_at and updated_at fields
@@ -33,4 +34,3 @@ class CreateFacilitiesTable extends Migration
         Schema::dropIfExists('facilities');
     }
 }
-

@@ -29,10 +29,14 @@
     <label for="timeSlot">Time Slot</label>
     <input type="time" class="form-control" id="timeSlot" name="time_slot" placeholder="Enter time slot duration (e.g., 100)" required>
 </div> -->
-<div class="form-group">
-    <label for="timeSlot">Time Slot</label>
-    <input type="time" class="form-control" id="timeSlot" name="time_slot" placeholder="Enter time slot (e.g., 09:00 - 17:00)" required>
-</div>
+                <div class="form-group">
+                    <label for="timeSlot">Start Time</label>
+                    <input type="time" class="form-control" id="startTime" name="start_time" placeholder="Enter start Time (e.g., 09:00 - 17:00)" required>
+                </div>
+                <div class="form-group">
+                    <label for="timeSlot">End Time</label>
+                    <input type="time" class="form-control" id="endTime" name="end_time" placeholder="Enter End Time (e.g., 09:00 - 17:00)" required>
+                </div>
 
 
                 <div class="form-group">

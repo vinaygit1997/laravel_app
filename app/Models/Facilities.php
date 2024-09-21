@@ -15,7 +15,8 @@ class Facilities extends Model
     // Define the fillable attributes
     protected $fillable = [
         'facility_name',
-        'time_slot',
+        'start_time',
+        'end_time',
         'charge_per_day',
         'cancel_days',
     ];

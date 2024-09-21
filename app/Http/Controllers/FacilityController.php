@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Facilities;
 use Illuminate\Http\Request;
 
+
 class FacilityController extends Controller
 {
     // Show the list of facilities
@@ -25,26 +26,24 @@ class FacilityController extends Controller
     {
         $request->validate([
             'facility_name' => 'required|string|max:255',
-            'time_slot' => 'required|date_format:H:i', // Validating time in HH:MM format
+            'start_time' => 'required|date_format:H:i',
+            'end_time' => 'required|date_format:H:i',
             'charge_per_day' => 'required|numeric',
             'cancel_days' => 'required|numeric',
         ]);
-    
-        // Append ":00" to make it HH:MM:SS format
-        $time_slot = $request->time_slot . ':00';
-    
+
+        // Insert the data directly without modifying the time format
         Facilities::create([
             'facility_name' => $request->facility_name,
-            'time_slot' => $time_slot, // Now in HH:MM:SS format
+            'start_time' => $request->start_time, 
+            'end_time' => $request->end_time, 
             'charge_per_day' => $request->charge_per_day,
             'cancel_days' => $request->cancel_days,
         ]);
-    
+
         return redirect()->route('admin.facilities.index')->with('success', 'Facility added successfully');
     }
-    
-  
-  
+
     // Show the facility edit form
     public function edit($id)
     {
@@ -54,35 +53,34 @@ class FacilityController extends Controller
 
     // Handle the facility update
     public function update(Request $request, $id)
-{
-    $request->validate([
-        'facility_name' => 'required|string|max:255',
-        'time_slot' => 'required|date_format:H:i', // Validating time in HH:MM format
-        'charge_per_day' => 'required|numeric',
-        'cancel_days' => 'required|numeric',
-    ]);
+    {
+        $request->validate([
+            'facility_name' => 'required|string|max:255',
+            'start_time' => 'required|date_format:H:i',
+            'end_time' => 'required|date_format:H:i',
+            'charge_per_day' => 'required|numeric',
+            'cancel_days' => 'required|numeric',
+        ]);
 
-    // Append ":00" to make it HH:MM:SS format
-    $time_slot = $request->time_slot . ':00';
+        $facility = Facilities::findOrFail($id);
+        $facility->update([
+            'facility_name' => $request->facility_name,
+            'start_time' => $request->start_time, 
+            'end_time' => $request->end_time, 
+            'charge_per_day' => $request->charge_per_day,
+            'cancel_days' => $request->cancel_days,
+        ]);
 
-    $facility = Facilities::findOrFail($id);
-    $facility->update([
-        'facility_name' => $request->facility_name,
-        'time_slot' => $time_slot, // Now in HH:MM:SS format
-        'charge_per_day' => $request->charge_per_day,
-        'cancel_days' => $request->cancel_days,
-    ]);
-
-    return redirect()->route('admin.facilities.index')->with('success', 'Facility updated successfully');
-}
-
+        return redirect()->route('admin.facilities.index')->with('success', 'Facility updated successfully');
+    }
 
     // Handle the facility deletion
     public function destroy($id)
     {
         $facility = Facilities::findOrFail($id);
         $facility->delete();
-    
+
         return redirect()->route('admin.facilities.index')->with('success', 'Facility deleted successfully');
     }
 }
+

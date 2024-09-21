@@ -23,10 +23,18 @@
                     <label for="facility_name">Facility Name</label>
                     <input type="text" name="facility_name" id="facility_name" class="form-control" value="{{ old('facility_name', $facility->facility_name) }}" required>
                 </div>
+              
+
                 <div class="form-group">
-                    <label for="time_slot">Time Slot</label>
-                    <input type="time" name="time_slot" id="time_slot" class="form-control" value="{{ old('time_slot', $facility->time_slot) }}" required>
+                    <label for="timeSlot">Start Time</label>
+                    <input type="time" class="form-control" id="startTime" name="start_time"  value="{{ old('start_time', $facility->start_time) }}" required>
                 </div>
+                <div class="form-group">
+                    <label for="timeSlot">End Time</label>
+                    <input type="time" class="form-control" id="endTime" name="end_time" value="{{ old('end_time', $facility->end_time) }}" required>
+                </div>
+
+
                 <div class="form-group">
                     <label for="charge_per_day">Charge Per Day</label>
                     <input type="number" name="charge_per_day" id="charge_per_day" class="form-control" value="{{ old('charge_per_day', $facility->charge_per_day) }}" required>
