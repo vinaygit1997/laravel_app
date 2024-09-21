@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Staff;
 use Illuminate\Http\Request;
+use App\Models\Category;
+
 
 class StaffController extends Controller
 {
@@ -18,7 +20,11 @@ class StaffController extends Controller
 
 public function create()
 {
-    return view('admin.staff.create');
+    // Fetch all categories
+    $categories = Category::all();
+
+    // Pass categories to the view
+    return view('admin.staff.create', compact('categories'));
 }
 
 public function store(Request $request)

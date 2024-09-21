@@ -134,6 +134,11 @@ Route::put('admin/resident/update/{id}', [ResidentRegisterController::class, 'up
 
     Route::get('/admin/register-watchman', [WatchmanRegisterController::class, 'showRegisterWatchmanForm'])->name('admin.register.watchman.form');
     Route::post('/admin/register-watchman', [WatchmanRegisterController::class, 'registerWatchman'])->name('admin.register.watchman');
+Route::get('/admin/watchmen', [WatchmanRegisterController::class, 'showWatchmanList'])->name('admin.watchman-list');
+Route::get('/admin/watchmen/{id}', [WatchmanRegisterController::class, 'viewWatchman'])->name('admin.watchman-view');
+Route::get('/admin/watchmen/{id}/edit', [WatchmanRegisterController::class, 'editWatchman'])->name('admin.watchman-edit');
+Route::post('/admin/watchmen/{id}/update', [WatchmanRegisterController::class, 'updateWatchman'])->name('admin.watchman-update');
+Route::delete('/admin/watchmen/{id}', [WatchmanRegisterController::class, 'deleteWatchman'])->name('admin.watchman-delete');
 
     Route::get('/admin/users', [AdminController::class, 'showUsers'])->name('admin.show_users');
 

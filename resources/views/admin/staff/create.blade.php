@@ -20,10 +20,24 @@
                             <label for="name">Name</label>
                             <input type="text" id="name" name="name" class="form-control" required>
                         </div>
-                        <div class="col-md-6 mb-3">
-                            <label for="category">Category</label>
-                            <input type="text" id="category" name="category" class="form-control" required>
-                        </div>
+                        <div class="col-md-5 mb-3">
+    <label for="category">Category</label>
+    <select id="category" name="category" class="form-control" required>
+        <option value="">Select Category</option>
+        @foreach($categories as $category)
+            <option value="{{ $category->id }}">{{ $category->name }}</option>
+        @endforeach
+    </select>
+</div>
+<div class="col-md-1 mb-3 d-flex align-items-end">
+        <!-- + Button to open modal -->
+        <!-- <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#addCategoryModal">
+            +
+        </button> -->
+        <a href="{{ route('admin.categories.index') }}" class="btn btn-success">+</a>
+
+    </div>
+
                     </div>
 
                     <!-- Row 2: Gender and Contact -->
