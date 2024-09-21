@@ -11,24 +11,29 @@
         </div>
 
         @if(session('success'))
-            <div class="alert alert-success">
-                {{ session('success') }}
-            </div>
+        <div class="alert alert-success">
+            {{ session('success') }}
+        </div>
         @endif
 
         <div class="card-body">
-        <form  action="{{ route('admin.facilities.store') }}" method="POST" method="POST">
+            <form action="{{ route('admin.facilities.store') }}" method="POST">
                 @csrf
-                
+
                 <div class="form-group">
                     <label for="facilityName">Facility Name</label>
                     <input type="text" class="form-control" id="facilityName" name="facility_name" placeholder="Enter facility name" required>
                 </div>
 
-                <div class="form-group">
-                    <label for="chargePerHour">Charge Per Hour</label>
-                    <input type="number" class="form-control" id="chargePerHour" name="charge_per_hour" placeholder="Enter charge per hour (e.g., 100)" required>
-                </div>
+                <!-- <div class="form-group">
+    <label for="timeSlot">Time Slot</label>
+    <input type="time" class="form-control" id="timeSlot" name="time_slot" placeholder="Enter time slot duration (e.g., 100)" required>
+</div> -->
+<div class="form-group">
+    <label for="timeSlot">Time Slot</label>
+    <input type="time" class="form-control" id="timeSlot" name="time_slot" placeholder="Enter time slot (e.g., 09:00 - 17:00)" required>
+</div>
+
 
                 <div class="form-group">
                     <label for="chargePerDay">Charge Per Day</label>

@@ -207,7 +207,7 @@ Route::middleware(['auth', 'user-access:resident'])->group(function () {
     Route::delete('/entry-passes/{id}', [EntryPassController::class, 'destroy'])->name('resident.entry-passes.destroy');
     Route::get('/entry-passes/{id}/edit', [EntryPassController::class, 'edit'])->name('resident.entry-passes.edit');
     Route::put('/entry-passes/{id}', [EntryPassController::class, 'update'])->name('resident.entry-passes.update');
-
+    Route::get('/residentfacilities', [FacilityController::class, 'residentIndex'])->name('resident.facilities.index');
    
   
 
@@ -233,19 +233,7 @@ Route::get('/directory/neighbours', [DirectoryController::class, 'neighbours'])-
 
 // routes/web.php
 
-use App\Http\Controllers\FacilityController;
 
-// Grouping routes under the resident prefix
-Route::prefix('resident')->name('resident.')->group(function () {
-    // Route for the index page to display the booking form
-    Route::get('/facilities', [FacilityController::class, 'index'])->name('facilities.index');
-
-    // Route to handle form submission and check availability
-    Route::post('/facilities/check-availability', [FacilityController::class, 'checkAvailability'])->name('facilities.check-availability');
-
-    // Route to view booking history
-    Route::get('/booking-history', [FacilityController::class, 'bookingHistory'])->name('facilities.booking-history');
-});
 
 
 Route::get('/', function () {
@@ -281,29 +269,25 @@ Route::get('/resident/activities', function () {
 Route::get('/resident/activities/booking-history', [ResidentActivityController::class, 'bookingHistory'])->name('resident.activities.booking-history');
 
 
-use App\Http\Controllers\Admin\FacilityController as AdminFacilityController; // Alias to avoid conflict
+use App\Http\Controllers\FacilityController;
 
-Route::middleware(['auth', 'user-access:admin'])->prefix('admin')->group(function () {
-    // Route to display the list of facilities
-    // Route::get('/facilities', [FacilityController::class, 'index'])->name('admin.facilities.index');
-    Route::get('/facilities', [FacilityController::class, 'index'])->name('admin.facilities.index');
-   
-    // Route to show the form for adding a new facility
-    Route::get('/admin/facilities/create', [AdminFacilityController::class, 'create'])->name('admin.facilities.create');
-    
-
-    // Route to handle the form submission for adding a new facility
-    Route::post('/admin/facilities', [FacilityController::class, 'store'])->name('admin.facilities.store');
-     
-    // Route to show the edit form
-Route::get('/facilities/{id}/edit', [FacilityController::class, 'edit'])->name('admin.facilities.edit');
-
-// Route to handle the update request
-Route::put('/facilities/{id}', [FacilityController::class, 'update'])->name('admin.facilities.update');
-
-Route::delete('/facilities/{id}', [FacilityController::class, 'destroy'])->name('admin.facilities.destroy');
+// Resident Routes
+Route::middleware(['auth', 'user-access:resident'])->group(function () {
+    Route::get('/residentfacilities', [FacilityController::class, 'residentIndex'])->name('resident.facilities.index');
+    Route::get('/residentfacilities/booking-history', [FacilityController::class, 'bookingHistory'])->name('resident.facilities.booking-history');
+    Route::get('/residentfacilities/check-availability', [FacilityController::class, 'checkAvailability'])->name('resident.facilities.check-availability');
 });
 
+// Admin Routes
+Route::middleware(['auth', 'user-access:admin'])->prefix('admin')->group(function () {
+    Route::get('/facilities', [FacilityController::class, 'index'])->name('admin.facilities.index');
+    Route::get('/facilities/create', [FacilityController::class, 'create'])->name('admin.facilities.create');
+    Route::post('/admin/facilities', [FacilityController::class, 'store'])->name('admin.facilities.store');
+    Route::get('/facilities/{id}/edit', [FacilityController::class, 'edit'])->name('admin.facilities.edit');
+    Route::put('/admin/facilities/{id}', [FacilityController::class, 'update'])->name('admin.facilities.update');
+    Route::delete('/admin/facilities/{id}', [FacilityController::class, 'destroy'])->name('admin.facilities.destroy');
+    
+});
 
 
 

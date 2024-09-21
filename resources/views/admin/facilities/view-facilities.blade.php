@@ -5,10 +5,10 @@
 @section('content')
 <div class="container">
     @if(session('success'))
-        <div class="alert alert-success alert-dismissible fade show" role="alert">
-            {{ session('success') }}
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        </div>
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        {{ session('success') }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
     @endif
 
     <div class="card mt-5">
@@ -22,7 +22,7 @@
                     <tr>
                         <th>S.NO</th>
                         <th>Facility Name</th>
-                        <th>Charge Per Hour</th>
+                        <th>Time Slot</th>
                         <th>Charge Per Day</th>
                         <th>Cancel Days</th>
                         <th>Actions</th>
@@ -30,21 +30,20 @@
                 </thead>
                 <tbody>
                     @foreach ($facilities as $index => $facility)
-                        <tr>
-                            <td>{{ $index + 1 }}</td>
-                            <td>{{ $facility->facility_name }}</td>
-                            <td>{{ $facility->charge_per_hour }}</td>
-                            <td>{{ $facility->charge_per_day }}</td>
-                            <td>{{ $facility->cancel_days }}</td>
-                            <td>
-                                <a href="{{ route('admin.facilities.edit', $facility->id) }}" class="btn btn-sm btn-info">Edit</a>
-                                <form action="{{ route('admin.facilities.destroy', $facility->id) }}" method="POST" style="display:inline;">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure you want to delete this facility?');">Delete</button>
-                                </form>
-                            </td>
-                        </tr>
+                    <tr>
+                        <td>{{ $index + 1 }}</td>
+                        <td>{{ $facility->facility_name }}</td>
+                        <td>{{ $facility->time_slot }}</td>
+                        <td>{{ $facility->charge_per_day }}</td>
+                        <td>{{ $facility->cancel_days }}</td>
+                        <td>
+                            <a href="{{ route('admin.facilities.edit', $facility->id) }}" class="btn btn-sm btn-info">Edit</a>
+                            <form action="{{ route('admin.facilities.destroy', $facility->id) }}" method="POST" style="display:inline;">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure?');">Delete</button>
+                        </td>
+                    </tr>
                     @endforeach
                 </tbody>
             </table>

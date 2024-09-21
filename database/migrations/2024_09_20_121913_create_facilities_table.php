@@ -6,22 +6,31 @@ use Illuminate\Support\Facades\Schema;
 
 class CreateFacilitiesTable extends Migration
 {
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
     public function up()
     {
         Schema::create('facilities', function (Blueprint $table) {
             $table->id();
             $table->string('facility_name');
-            $table->decimal('charge_per_hour', 8, 2);
+            $table->time('time_slot'); // This defines the 'time_slot' column as TIME
             $table->decimal('charge_per_day', 8, 2);
             $table->integer('cancel_days');
-            $table->timestamps();
+            $table->timestamps(); // For created_at and updated_at fields
         });
     }
 
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
     public function down()
     {
         Schema::dropIfExists('facilities');
     }
 }
-
 
