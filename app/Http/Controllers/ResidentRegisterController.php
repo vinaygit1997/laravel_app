@@ -81,10 +81,26 @@ class ResidentRegisterController extends Controller
       // Show single resident details
       public function showResident($id)
       {
-          // Find the resident by ID
+          
           $resident = ResidentDetail::findOrFail($id);
           return view('admin.show_resident', compact('resident')); // Pass the resident data to the view
       }
+
+//       public function showResident($id)
+// {
+//     // Find the resident by ID
+//     $resident = ResidentDetail::findOrFail($id);
+    
+//     // Check if the user is an admin
+//     if (auth()->user()->hasRole('admin')) {
+//         // If the user is an admin, return the admin view
+//         return view('admin.show_resident', compact('resident'));
+//     }
+    
+//     // If the user is a resident, return the resident view
+//     return view('resident.show_resident', compact('resident'));
+// }
+
       public function editResident($id)
 {
     $resident = ResidentDetail::findOrFail($id);

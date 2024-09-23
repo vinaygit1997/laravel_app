@@ -395,3 +395,11 @@ Route::get('/admin/parking-slot/vehicles', function () {
 Route::get('/admin/parking-slot/vehicles-data', function () {
     return view('admin.parking-slot.vehicles-data');
 })->name('admin.parking-slot.vehicles-data');
+
+use App\Http\Controllers\ResidentController;
+
+Route::get('/resident/profile/{id}', [ResidentController::class, 'show'])->name('resident.profile');
+Route::get('/resident/profile/test', [ResidentController::class, 'test'])->name('resident.profile.test');
+
+
+Route::get('/resident/{id}', [ResidentController::class, 'show'])->name('resident.show');

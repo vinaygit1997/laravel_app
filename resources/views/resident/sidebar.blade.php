@@ -16,8 +16,12 @@
         <div class="d-flex">
     <div class="left-edge-icons">
         <div class="icon-container">
-            <i class="bi bi-person icon"></i>
-        </div>
+    <a href="">
+    <i class="bi bi-person icon" style="cursor: pointer;"></i>
+</a>
+
+</div>
+
         <div class="icon-container">
             <i class="bi bi-bell icon"></i>
         </div>

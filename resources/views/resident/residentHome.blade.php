@@ -172,7 +172,7 @@
     <div class="row justify-content-center">
 
         <div class="col-md-10">
-            <div class="card">
+            <!-- <div class="card">
                 <div class="card-header" style="background-color:rgb(242, 244, 252)">{{ __('Dashboard') }}</div>
 
                 <div class="card-body">
@@ -183,7 +183,7 @@
                     @endif
 
                     <h2>You are a Resident User.</h2>
-                    <!-- Display user's name and email -->
+                    
                     <p class="mt-4">
                         <strong>Name:</strong> {{ Auth::user()->name }}
                     </p>
@@ -193,7 +193,7 @@
 
                 </div>
             </div>
-        </div>
+        </div> -->
 
         <div class="col-md-10">
             <div class="unit-bar">
