@@ -91,7 +91,7 @@
             
 
 <li class="nav-item">   
-<a class="nav-link" href="{{ route('admin.resident_accounts.index') }}">
+<a class="nav-link" href="{{ route('admin.resident.index') }}">
 
         <i class="bi bi-cart"></i>
         <span class="nav-text"> Maintenance</span>
@@ -100,7 +100,7 @@
 </li>
 
     <li class="nav-item">   
-        <a class="nav-link" href="{{ route('flats') }}">
+        <a class="nav-link" href="{{ route('admin.flatimport.index') }}">
             <i class="bi bi-building"></i>
             <span class="nav-text">Flats Registration</span>
             <!-- <i class="bi bi-chevron-down ms-auto"></i> -->
