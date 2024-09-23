@@ -73,8 +73,26 @@ Route::middleware(['auth', 'user-access:admin'])->group(function () {
     Route::get('/openrequest-create', function () {
         return view('admin.helpdesk.create');
     })->name('helpdesk-create');
-});
+ 
+
   
+    
+    });
+    
+    use App\Http\Controllers\FlatImportController;
+
+    Route::middleware(['auth', 'user-access:admin'])->group(function () {
+        Route::get('/flatimport', [FlatImportController::class, 'showUploadForm'])->name('admin.flatimport.show');
+        Route::post('/flatimport', [FlatImportController::class, 'import'])->name('admin.flatimport.import');
+        
+        // Display flats, edit, update, and delete routes
+        Route::get('/flatimport/index', [FlatImportController::class, 'index'])->name('admin.flatimport.index');
+        Route::get('/flatimport/edit/{id}', [FlatImportController::class, 'edit'])->name('admin.flatimport.edit');
+        Route::put('/flatimport/update/{id}', [FlatImportController::class, 'update'])->name('admin.flatimport.update');
+        Route::delete('/flatimport/destroy/{id}', [FlatImportController::class, 'destroy'])->name('admin.flatimport.destroy');
+    });
+    
+    
 /*------------------------------------------
 --------------------------------------------
 All Admin Routes List
@@ -294,6 +312,17 @@ Route::middleware(['auth', 'user-access:admin'])->prefix('admin')->group(functio
     
 });
 
+use App\Http\Controllers\ResidentAccountController;
+
+Route::middleware(['auth', 'user-access:admin'])->group(function () {
+    Route::get('/resident-details', [ResidentAccountController::class, 'index'])->name('admin.resident.index');
+    Route::get('/resident-details/{id}/edit', [ResidentAccountController::class, 'edit'])->name('admin.resident.edit');
+    Route::put('/resident-details/{id}', [ResidentAccountController::class, 'update'])->name('admin.resident.update');
+    Route::delete('/resident-details/{id}', [ResidentAccountController::class, 'destroy'])->name('admin.resident.destroy');
+  
+});
+
+
 
 
 use App\Http\Controllers\Admin\ActivityController; // Correct namespace
@@ -344,7 +373,7 @@ Route::prefix('admin/vendors')->name('admin.vendors.')->group(function () {
     Route::get('{vendor}', [VendorController::class, 'show'])->name('show'); // Route for viewing a vendor
 });
 
-use App\Http\Controllers\ResidentAccountController;
+
 
 // Display a listing of resident accounts
 // Display a listing of resident accounts
