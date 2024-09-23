@@ -281,6 +281,8 @@ Route::middleware(['auth', 'user-access:resident'])->group(function () {
     Route::get('/residentfacilities', [FacilityController::class, 'residentIndex'])->name('resident.facilities.index');
     Route::get('/residentfacilities/booking-history', [FacilityController::class, 'bookingHistory'])->name('resident.facilities.booking-history');
     Route::get('/residentfacilities/check-availability', [FacilityController::class, 'checkAvailability'])->name('resident.facilities.check-availability');
+    Route::get('/residentfacilities/get-times/{id}', [FacilityController::class, 'getFacilityTimes'])->name('resident.facilities.get-times');
+
 });
 
 // Admin Routes

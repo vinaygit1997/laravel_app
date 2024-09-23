@@ -63,15 +63,14 @@
     <form action="{{ route('resident.facilities.check-availability') }}" method="POST">
         @csrf
         <div class="form-group">
-            <label for="facility">Facility</label>
-            <select class="form-control" id="facility" name="facility">
-                <option value="">Select a facility</option>
-                <option value="facility1">Facility 1</option>
-                <option value="facility2">Facility 2</option>
-                <option value="facility3">Facility 3</option>
-                <!-- Add more options as needed -->
-            </select>
-        </div>
+    <label for="facility">Facility</label>
+    <select class="form-control" id="facility" name="facility">
+        <option value="">Select a facility</option>
+        @foreach($facilities as $facility)
+            <option value="{{ $facility->id }}">{{ $facility->facility_name }}</option> <!-- Adjust field names based on your table -->
+        @endforeach
+    </select>
+</div>
 
         <div class="form-group">
     <label for="date">Date</label>
@@ -79,11 +78,37 @@
 </div>
 
 
+<div class="form-group">
+    <label for="start_time">Start Time</label>
+    <input type="text" class="form-control" id="start_time" placeholder="Start Time" name="start_time" readonly>
+</div>
 
-        <div class="form-group">
-            <label for="time">Time</label>
-            <input type="text" class="form-control" id="time" placeholder="Select time" name="time">
-        </div>
+<div class="form-group">
+    <label for="end_time">End Time</label>
+    <input type="text" class="form-control" id="end_time" placeholder="End Time" name="end_time" readonly>
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        document.getElementById('facility').addEventListener('change', function() {
+            var facilityId = this.value;
+            if (facilityId) {
+                fetch(`/residentfacilities/get-times/${facilityId}`)
+                    .then(response => response.json())
+                    .then(data => {
+                        document.getElementById('start_time').value = data.start_time;
+                        document.getElementById('end_time').value = data.end_time;
+                    })
+                    .catch(error => console.error('Error:', error));
+            } else {
+                document.getElementById('start_time').value = '';
+                document.getElementById('end_time').value = '';
+            }
+        });
+    });
+</script>
+
+
         <div class="form-group">
             <label for="bookedFor">Booked For</label>
             <select class="form-control" id="bookedFor" name="bookedFor">
