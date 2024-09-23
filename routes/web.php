@@ -300,6 +300,8 @@ Route::middleware(['auth', 'user-access:resident'])->group(function () {
     Route::get('/residentfacilities/booking-history', [FacilityController::class, 'bookingHistory'])->name('resident.facilities.booking-history');
     Route::get('/residentfacilities/check-availability', [FacilityController::class, 'checkAvailability'])->name('resident.facilities.check-availability');
     Route::get('/residentfacilities/get-times/{id}', [FacilityController::class, 'getFacilityTimes'])->name('resident.facilities.get-times');
+    Route::post('/resident/facilities/check-availability', [FacilityController::class, 'bookFacility'])->name('resident.facilities.check-availability');
+
 
 });
 
