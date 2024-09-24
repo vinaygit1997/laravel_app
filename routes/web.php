@@ -323,8 +323,20 @@ Route::middleware(['auth', 'user-access:admin'])->group(function () {
     Route::get('/resident-details/{id}/edit', [ResidentAccountController::class, 'edit'])->name('admin.resident.edit');
     Route::put('/resident-details/{id}', [ResidentAccountController::class, 'update'])->name('admin.resident.update');
     Route::delete('/resident-details/{id}', [ResidentAccountController::class, 'destroy'])->name('admin.resident.destroy');
+   
   
 });
+
+
+use App\Http\Controllers\MaintenanceChargeController;
+
+Route::middleware(['auth', 'user-access:admin'])->group(function () {
+    Route::get('/admin/maintenance', [MaintenanceChargeController::class, 'index'])->name('maintenance.index');
+    Route::post('/admin/maintenance', [MaintenanceChargeController::class, 'store'])->name('maintenance.store');
+    Route::put('/admin/maintenance/{maintenanceCharge}', [MaintenanceChargeController::class, 'update'])->name('maintenance.update');
+    Route::delete('/admin/maintenance/{maintenanceCharge}', [MaintenanceChargeController::class, 'destroy'])->name('maintenance.destroy');
+});
+
 
 
 

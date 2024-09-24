@@ -9,18 +9,18 @@
             @method('PUT')
 
             <div class="form-group">
-                <label for="flat_no">Flat No</label>
-                <input type="text" name="flat_no" class="form-control" value="{{ old('flat_no', $resident->flat_no) }}" required>
+                <label for="flat_number">Flat No</label>
+                <input type="text" name="flat_number" class="form-control" value="{{ old('flat_number', $resident->flat_number) }}" required>
             </div>
 
             <div class="form-group">
-                <label for="floor_no">Floor No</label>
-                <input type="text" name="floor_no" class="form-control" value="{{ old('floor_no', $resident->floor_no) }}" required>
+                <label for="floor">Floor No</label>
+                <input type="text" name="floor" class="form-control" value="{{ old('floor', $resident->floor) }}" required>
             </div>
 
             <div class="form-group">
-                <label for="block_no">Block No</label>
-                <input type="text" name="block_no" class="form-control" value="{{ old('block_no', $resident->block_no) }}" required>
+                <label for="block">Block No</label>
+                <input type="text" name="block" class="form-control" value="{{ old('block', $resident->block) }}" required>
             </div>
 
             <div class="form-group">
@@ -44,8 +44,8 @@
             </div>
 
             <div class="form-group">
-                <label for="area_sft">Area (SFT)</label>
-                <input type="number" name="area_sft" class="form-control" value="{{ old('area_sft', $resident->area_sft) }}" required>
+                <label for="area">Area (SFT)</label>
+                <input type="number" name="area" class="form-control" value="{{ old('area', $resident->area) }}" required>
             </div>
 
             <button type="submit" class="btn btn-primary">Update</button>

@@ -3,7 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\ResidentAccount;
-use App\Models\ResidentDetail; // Import the ResidentDetail model
+use App\Models\ResidentDetail;
+use App\Models\MaintenanceCharge; // Import the ResidentDetail model
 use Illuminate\Http\Request;
 class ResidentAccountController extends Controller
 {
@@ -11,9 +12,12 @@ class ResidentAccountController extends Controller
     public function index()
     {
         $residents = ResidentDetail::all(); // Fetch all residents
-        return view('admin.resident_accounts.index', compact('residents'));
-    }
 
+        // Get the latest maintenance charge
+        $latestCharge = MaintenanceCharge::latest()->first(); // Fetch the latest maintenance charge
+
+        return view('admin.resident_accounts.index', compact('residents', 'latestCharge')); // Pass residents and maintenance charge to the view
+    }
     // Show form for editing a resident
     public function edit($id)
     {
@@ -36,14 +40,14 @@ class ResidentAccountController extends Controller
         }
 
         $request->validate([
-            'flat_no' => 'required|string',
-            'floor_no' => 'required|integer',
-            'block_no' => 'required|string',
+            'flat_number' => 'required|string',
+            'floor' => 'required|integer',
+            'block' => 'required|string',
             'flat_holder_name' => 'required|string',
             'name' => 'required|string',
             'mobile' => 'required|numeric',
             'email' => 'required|email',
-            'area_sft' => 'required|numeric',
+            'area' => 'required|numeric',
         ]);
 
         $resident->update($request->all());
@@ -64,6 +68,8 @@ class ResidentAccountController extends Controller
 
         return redirect()->route('admin.resident.index')->with('success', 'Resident deleted successfully.');
     }
+
+    
 
    
 }
