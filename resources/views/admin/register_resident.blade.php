@@ -17,10 +17,10 @@
 
                         <!-- Flat No Field -->
                         <div class="form-group row">
-                            <label for="flat_no" class="col-md-4 col-form-label text-md-right">{{ __('Flat No') }}</label>
+                            <label for="flat_number" class="col-md-4 col-form-label text-md-right">{{ __('Flat No') }}</label>
                             <div class="col-md-6">
-                                <input id="flat_no" type="text" class="form-control @error('flat_no') is-invalid @enderror" name="flat_no" value="{{ old('flat_no') }}" required>
-                                @error('flat_no')
+                                <input id="flat_number" type="text" class="form-control @error('flat_number') is-invalid @enderror" name="flat_number" value="{{ old('flat_number') }}" required>
+                                @error('flat_number')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
@@ -30,9 +30,9 @@
 
                         <!-- Floor Number Field -->
                         <div class="form-group row">
-                            <label for="floor_no" class="col-md-4 col-form-label text-md-right">{{ __('Floor No') }}</label>
+                            <label for="floor" class="col-md-4 col-form-label text-md-right">{{ __('Floor No') }}</label>
                             <div class="col-md-6">
-                                <input id="floor_no" type="text" class="form-control @error('floor_no') is-invalid @enderror" name="floor_no" value="{{ old('floor_no') }}" required>
+                                <input id="floor" type="text" class="form-control @error('floor') is-invalid @enderror" name="floor" value="{{ old('floor') }}" required>
                                 @error('floor_no')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -43,10 +43,34 @@
 
                         <!-- Block No Field -->
                         <div class="form-group row">
-                            <label for="block_no" class="col-md-4 col-form-label text-md-right">{{ __('Block No') }}</label>
+                            <label for="block" class="col-md-4 col-form-label text-md-right">{{ __('Block No') }}</label>
                             <div class="col-md-6">
-                                <input id="block_no" type="text" class="form-control @error('block_no') is-invalid @enderror" name="block_no" value="{{ old('block_no') }}" required>
-                                @error('block_no')
+                                <input id="block" type="text" class="form-control @error('block') is-invalid @enderror" name="block" value="{{ old('block') }}" required>
+                                @error('block')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="flat_type" class="col-md-4 col-form-label text-md-right">{{ __('Flat Type') }}</label>
+                            <div class="col-md-6">
+                                <input id="flat_type" type="text" class="form-control @error('flat_type') is-invalid @enderror" name="flat_type" value="{{ old('flat_type') }}" required>
+                                @error('flat_type')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="area" class="col-md-4 col-form-label text-md-right">{{ __('Area -sqft') }}</label>
+                            <div class="col-md-6">
+                                <input id="area" type="number" class="form-control @error('area') is-invalid @enderror" name="area" value="{{ old('area') }}" required>
+                                @error('area')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
@@ -135,25 +159,7 @@
                         </div>
 
                         <!-- Password Field -->
-                        <div class="form-group row">
-                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required>
-                                @error('password')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <!-- Confirm Password Field -->
-                        <div class="form-group row">
-                            <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Confirm Password') }}</label>
-                            <div class="col-md-6">
-                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
-                            </div>
-                        </div>
+                      
 
                         <!-- Family Members Field -->
                         <div class="form-group row">

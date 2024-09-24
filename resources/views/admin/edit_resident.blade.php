@@ -48,25 +48,41 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="flat_no">Flat No:</label>
-                            <input type="text" id="flat_no" name="flat_no" class="form-control" value="{{ old('flat_no', $resident->flat_no) }}" required>
-                            @error('flat_no')
+                            <label for="flat_number">Flat No:</label>
+                            <input type="text" id="flat_number" name="flat_number" class="form-control" value="{{ old('flat_number', $resident->flat_number) }}" required>
+                            @error('flat_number')
                                 <span class="text-danger">{{ $message }}</span>
                             @enderror
                         </div>
 
                         <div class="form-group">
-                            <label for="floor_no">Floor No:</label>
-                            <input type="text" id="floor_no" name="floor_no" class="form-control" value="{{ old('floor_no', $resident->floor_no) }}" required>
-                            @error('floor_no')
+                            <label for="floor">Floor No:</label>
+                            <input type="text" id="floor" name="floor" class="form-control" value="{{ old('floor', $resident->floor) }}" required>
+                            @error('floor')
                                 <span class="text-danger">{{ $message }}</span>
                             @enderror
                         </div>
 
                         <div class="form-group">
-                            <label for="block_no">Block No:</label>
-                            <input type="text" id="block_no" name="block_no" class="form-control" value="{{ old('block_no', $resident->block_no) }}" required>
-                            @error('block_no')
+                            <label for="block">Block No:</label>
+                            <input type="text" id="block" name="block" class="form-control" value="{{ old('block', $resident->block) }}" required>
+                            @error('block')
+                                <span class="text-danger">{{ $message }}</span>
+                            @enderror
+                        </div>
+
+                        <div class="form-group">
+                            <label for="flat_type">Flat Type:</label>
+                            <input type="text" id="flat_type" name="flat_type" class="form-control" value="{{ old('flat_type', $resident->flat_type) }}" required>
+                            @error('flat_type')
+                                <span class="text-danger">{{ $message }}</span>
+                            @enderror
+                        </div>
+
+                        <div class="form-group">
+                            <label for="area">Area:</label>
+                            <input type="text" id="area" name="area" class="form-control" value="{{ old('area', $resident->area) }}" required>
+                            @error('area')
                                 <span class="text-danger">{{ $message }}</span>
                             @enderror
                         </div>
@@ -95,13 +111,7 @@
                             @enderror
                         </div>
 
-                        <div class="form-group">
-                            <label for="area_sft">Area (SFT):</label>
-                            <input type="number" id="area_sft" name="area_sft" class="form-control" value="{{ old('area_sft', $resident->area_sft) }}">
-                            @error('area_sft')
-                                <span class="text-danger">{{ $message }}</span>
-                            @enderror
-                        </div>
+                      
 
                         <button type="submit" class="btn btn-primary">Update Resident</button>
                     </form>

@@ -18,13 +18,19 @@
                         <dd class="col-sm-8">{{ $resident->name }}</dd>
 
                         <dt class="col-sm-4">Flat No:</dt>
-                        <dd class="col-sm-8">{{ $resident->flat_no }}</dd>
+                        <dd class="col-sm-8">{{ $resident->flat_number}}</dd>
 
                         <dt class="col-sm-4">Floor No:</dt>
-                        <dd class="col-sm-8">{{ $resident->floor_no }}</dd>
+                        <dd class="col-sm-8">{{ $resident->floor }}</dd>
 
                         <dt class="col-sm-4">Block No:</dt>
-                        <dd class="col-sm-8">{{ $resident->block_no }}</dd>
+                        <dd class="col-sm-8">{{ $resident->block }}</dd>
+
+                        <dt class="col-sm-4">Flat Type</dt>
+                        <dd class="col-sm-8">{{ $resident->flat_type }}</dd>
+
+                        <dt class="col-sm-4">Area</dt>
+                        <dd class="col-sm-8">{{ $resident->area }}</dd>
 
                         <dt class="col-sm-4">Aadhar No:</dt>
                         <dd class="col-sm-8">{{ $resident->aadhar_no }}</dd>

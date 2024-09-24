@@ -43,7 +43,7 @@
                                 <td>{{ $resident->name }}</td>
                                 <td>{{ $resident->mobile }}</td>
                                 <td>{{ $resident->email }}</td>
-                                <td>{{ $resident->flat_no }}</td>
+                                <td>{{ $resident->flat_number }}</td>
                                 <!-- <td>{{ $resident->floor_no }}</td>
                                 <td>{{ $resident->block_no }}</td>
                                 <td>{{ $resident->aadhar_no }}</td>

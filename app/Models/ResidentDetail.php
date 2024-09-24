@@ -8,13 +8,14 @@ use Illuminate\Database\Eloquent\Model;
 class ResidentDetail extends Model
 {
     use HasFactory;
-
+  
     protected $fillable = [
         'user_id',
         'admin_id',
-        'flat_no',
-        'floor_no',
-        'block_no',
+        'flat_number',
+        'floor',
+        'block',
+        'flat_type',
         'flat_holder_name',
         'name',
         'aadhar_no',
@@ -22,7 +23,7 @@ class ResidentDetail extends Model
         'email',
         'family_members',
         'vehicles',
-        'area_sft',
+        'area',
     ];
 
     public function user()

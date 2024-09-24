@@ -8,6 +8,9 @@ use Illuminate\Support\Facades\Validator; // Import the Validator facade
 use App\Models\User;
 use App\Models\ResidentDetail;
 use Illuminate\Support\Facades\Auth;
+use App\Models\AdminOtp;
+use Illuminate\Support\Facades\Mail;
+
 
 class ResidentRegisterController extends Controller
 {
@@ -20,20 +23,23 @@ class ResidentRegisterController extends Controller
     // Handle the resident registration process
     public function registerResident(Request $request)
     {
+
+      
         // Validate incoming request data
         $validator = Validator::make($request->all(), [
             'name' => 'required|string|max:255',
             'mobile' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|confirmed|min:8',
-            'flat_no' => 'required|string|max:255',
-            'floor_no' => 'required|string|max:255',
-            'block_no' => 'required|string|max:255',
+          
+            'block' => 'required|string|max:255',
+            'floor' => 'required|string|max:255',
+            'flat_number' => 'required|string|max:255',
+            'flat_type' => 'required|string|max:255',
             'flat_holder_name' => 'nullable|string|max:255',
             'aadhar_no' => 'nullable|string|max:255',
             'family_members' => 'nullable|integer',
             'vehicles' => 'nullable|integer',
-            'area_sft' => 'nullable|integer',
+            'area' => 'nullable|integer',
         ]);
 
         // If validation fails, redirect back with errors
@@ -46,10 +52,10 @@ class ResidentRegisterController extends Controller
             'name' => $request->name,
             'mobile' => $request->mobile,
             'email' => $request->email,
-            'password' => Hash::make($request->password),
+            'password' => null,
             'type' => 3, // 3 for Resident
         ]);
-
+       
         // Store the resident details in the ResidentDetail model
         ResidentDetail::create([
             'user_id' => $user->id,
@@ -57,19 +63,75 @@ class ResidentRegisterController extends Controller
             'name' => $request->name,
             'mobile' => $request->mobile,
             'email' => $request->email,
-            'flat_no' => $request->flat_no,
-            'floor_no' => $request->floor_no,
-            'block_no' => $request->block_no,
+            'flat_number' => $request->flat_number,
+            'floor' => $request->floor,
+            'block' => $request->block,
+            'flat_type' => $request->flat_type,
             'flat_holder_name' => $request->flat_holder_name,
             'aadhar_no' => $request->aadhar_no,
             'family_members' => $request->family_members,
             'vehicles' => $request->vehicles,
-            'area_sft' => $request->area_sft,
+            'area' => $request->area,
         ]);
+
+  // Generate and store OTP
+  $otp = rand(100000, 999999);
+  AdminOtp::create([
+      'user_id' => $user->id,
+      'otp' => $otp,
+      'is_used' => false,
+  ]);
+
+  // Send OTP email
+  Mail::send('emails.admin_otp', ['otp' => $otp, 'url' => route('admin.verify.otp', ['id' => $user->id])], function ($message) use ($request) {
+      $message->to($request->email);
+      $message->subject('OTP for Admin Account Setup');
+  });
+
+
+
 
         // Redirect back to the registration form with success message
         return redirect()->route('admin.register.resident.form')->with('status', 'Resident registered successfully.');
     }
+
+    public function showOtpForm($id)
+    {
+        return view('admin.verify_otp', ['userId' => $id]);
+    }
+    
+
+    public function verifyOtp(Request $request, $id)
+    {
+        $validator = Validator::make($request->all(), [
+            'otp' => 'required|digits:6',
+        ]);
+    
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator);
+        }
+    
+        $adminOtp = AdminOtp::where('user_id', $id)
+                             ->where('otp', $request->otp)
+                             ->where('is_used', false)
+                             ->first();
+    
+        if (!$adminOtp) {
+            return redirect()->back()->withErrors(['otp' => 'Invalid OTP or OTP already used.']);
+        }
+    
+        $adminOtp->is_used = true;
+        $adminOtp->save();
+    
+        return redirect()->route('admin.setup.password', ['id' => $id]);
+    }
+    
+    public function showPasswordSetupForm($id)
+    {
+        return view('admin.setup_password', ['id' => $id]);
+    }
+
+
 
     // Show list of residents
     public function viewResidents()
@@ -81,26 +143,10 @@ class ResidentRegisterController extends Controller
       // Show single resident details
       public function showResident($id)
       {
-          
+          // Find the resident by ID
           $resident = ResidentDetail::findOrFail($id);
           return view('admin.show_resident', compact('resident')); // Pass the resident data to the view
       }
-
-//       public function showResident($id)
-// {
-//     // Find the resident by ID
-//     $resident = ResidentDetail::findOrFail($id);
-    
-//     // Check if the user is an admin
-//     if (auth()->user()->hasRole('admin')) {
-//         // If the user is an admin, return the admin view
-//         return view('admin.show_resident', compact('resident'));
-//     }
-    
-//     // If the user is a resident, return the resident view
-//     return view('resident.show_resident', compact('resident'));
-// }
-
       public function editResident($id)
 {
     $resident = ResidentDetail::findOrFail($id);
@@ -113,14 +159,15 @@ public function updateResident(Request $request, $id)
         'name' => 'required|string|max:255',
         'mobile' => 'required|string|max:255',
         'email' => 'required|string|email|max:255|unique:users,email,' . $id,
-        'flat_no' => 'required|string|max:255',
-        'floor_no' => 'required|string|max:255',
-        'block_no' => 'required|string|max:255',
+        'flat_number' => 'required|string|max:255',
+        'flat_type' => 'required|string|max:255',
+        'floor' => 'required|string|max:255',
+        'block' => 'required|string|max:255',
         'flat_holder_name' => 'nullable|string|max:255',
         'aadhar_no' => 'nullable|string|max:255',
         'family_members' => 'nullable|integer',
         'vehicles' => 'nullable|integer',
-        'area_sft' => 'nullable|integer',
+        'area' => 'nullable|integer',
     ]);
 
     if ($validator->fails()) {
