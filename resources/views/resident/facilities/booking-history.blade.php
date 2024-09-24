@@ -19,42 +19,26 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>Amphitheatre</td>
-                    <td>11-Sep-2024</td>
-                    <td>10:00 AM - 12:00 PM</td>
-                    <td>John Doe</td>
-                    <td>Yes</td>
-                </tr>
-                <tr>
-                    <td>Amphitheatre</td>
-                    <td>11-Sep-2024</td>
-                    <td>11:00 AM - 12:00 PM</td>
-                    <td>Ravi</td>
-                    <td>Yes</td>
-                </tr>
-                <tr>
-                    <td>Amphitheatre</td>
-                    <td>13-Sep-2024</td>
-                    <td>12:00 AM - 4:00 PM</td>
-                    <td>Mohan Leo</td>
-                    <td>Yes</td>
-                </tr>
-                <tr>
-                    <td>Amphitheatre</td>
-                    <td>15-Sep-2024</td>
-                    <td>11:45 AM - 07:00 PM</td>
-                    <td>Paul</td>
-                    <td>Yes</td>
-                </tr>
-                <tr>
-                    <td>Amphitheatre</td>
-                    <td>17-Sep-2024</td>
-                    <td>12:45 PM - 07:00 PM</td>
-                    <td>Paul</td>
-                    <td>Yes</td>
-                </tr>
-                <!-- Add more rows as needed -->
+                @forelse($bookings as $booking)
+                    <tr>
+                        <!-- <td>
+                            @if($booking->facility)
+                                {{ $booking->facility->facility_name }}
+                            @else
+                                <em>Facility not available</em>
+                            @endif
+                        </td> -->
+                        <td>{{ $booking->facility_name }}</td>
+                        <td>{{ \Carbon\Carbon::parse($booking->date)->format('d-m-Y') }}</td>
+                        <td>{{ $booking->start_time }} - {{ $booking->end_time }}</td>
+                        <td>{{ $booking->booked_for }}</td>
+                        <td>{{ $booking->community_purpose ? 'Yes' : 'No' }}</td>
+                    </tr>
+                @empty
+                    <tr>
+                        <td colspan="5">No bookings found</td>
+                    </tr>
+                @endforelse
             </tbody>
         </table>
     </div>

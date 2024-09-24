@@ -73,8 +73,26 @@ Route::middleware(['auth', 'user-access:admin'])->group(function () {
     Route::get('/openrequest-create', function () {
         return view('admin.helpdesk.create');
     })->name('helpdesk-create');
-});
+ 
+
   
+    
+    });
+    
+    use App\Http\Controllers\FlatImportController;
+
+    Route::middleware(['auth', 'user-access:admin'])->group(function () {
+        Route::get('/flatimport', [FlatImportController::class, 'showUploadForm'])->name('admin.flatimport.show');
+        Route::post('/flatimport', [FlatImportController::class, 'import'])->name('admin.flatimport.import');
+        
+        // Display flats, edit, update, and delete routes
+        Route::get('/flatimport/index', [FlatImportController::class, 'index'])->name('admin.flatimport.index');
+        Route::get('/flatimport/edit/{id}', [FlatImportController::class, 'edit'])->name('admin.flatimport.edit');
+        Route::put('/flatimport/update/{id}', [FlatImportController::class, 'update'])->name('admin.flatimport.update');
+        Route::delete('/flatimport/destroy/{id}', [FlatImportController::class, 'destroy'])->name('admin.flatimport.destroy');
+    });
+    
+    
 /*------------------------------------------
 --------------------------------------------
 All Admin Routes List
@@ -281,6 +299,10 @@ Route::middleware(['auth', 'user-access:resident'])->group(function () {
     Route::get('/residentfacilities', [FacilityController::class, 'residentIndex'])->name('resident.facilities.index');
     Route::get('/residentfacilities/booking-history', [FacilityController::class, 'bookingHistory'])->name('resident.facilities.booking-history');
     Route::get('/residentfacilities/check-availability', [FacilityController::class, 'checkAvailability'])->name('resident.facilities.check-availability');
+    Route::get('/residentfacilities/get-times/{id}', [FacilityController::class, 'getFacilityTimes'])->name('resident.facilities.get-times');
+    Route::post('/resident/facilities/check-availability', [FacilityController::class, 'bookFacility'])->name('resident.facilities.check-availability');
+
+
 });
 
 // Admin Routes
@@ -293,6 +315,17 @@ Route::middleware(['auth', 'user-access:admin'])->prefix('admin')->group(functio
     Route::delete('/admin/facilities/{id}', [FacilityController::class, 'destroy'])->name('admin.facilities.destroy');
     
 });
+
+use App\Http\Controllers\ResidentAccountController;
+
+Route::middleware(['auth', 'user-access:admin'])->group(function () {
+    Route::get('/resident-details', [ResidentAccountController::class, 'index'])->name('admin.resident.index');
+    Route::get('/resident-details/{id}/edit', [ResidentAccountController::class, 'edit'])->name('admin.resident.edit');
+    Route::put('/resident-details/{id}', [ResidentAccountController::class, 'update'])->name('admin.resident.update');
+    Route::delete('/resident-details/{id}', [ResidentAccountController::class, 'destroy'])->name('admin.resident.destroy');
+  
+});
+
 
 
 
@@ -344,7 +377,7 @@ Route::prefix('admin/vendors')->name('admin.vendors.')->group(function () {
     Route::get('{vendor}', [VendorController::class, 'show'])->name('show'); // Route for viewing a vendor
 });
 
-use App\Http\Controllers\ResidentAccountController;
+
 
 // Display a listing of resident accounts
 // Display a listing of resident accounts
