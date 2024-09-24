@@ -7,7 +7,7 @@
             <div class="card">
                 <div class="card-header">Register Watchman</div>
                 <div class="card-body">
-                    <form method="POST" action="/register-watchman">
+                    <form method="POST" action="{{ route('admin.register.watchman') }}">
                         <table class="table">
                             <tbody>
                                 <tr>

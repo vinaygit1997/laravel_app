@@ -59,7 +59,7 @@ class WatchmanRegisterController extends Controller
             'address' => $request->address,
         ]);
 
-        return redirect()->route('admin.home')->with('status', 'Manager registered successfully.');
+        return redirect()->route('admin.view_watchman')->with('status', 'Watchman registered successfully.');
     }
 
     public function showWatchmanList()
