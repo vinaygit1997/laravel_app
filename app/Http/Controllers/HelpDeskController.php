@@ -1,79 +1,110 @@
 <?php
 
-// namespace App\Http\Controllers;
-
-// use Illuminate\Http\Request;
-
-// class HelpDeskController extends Controller
-// {
-//     public function index()
-//     {
-//         return view('resident/helpdesk.index'); 
-//     }
-// }
-
 namespace App\Http\Controllers;
 
+use App\Models\HelpDeskRequest;
 use Illuminate\Http\Request;
-// Import your models if necessary
-// use App\Models\OpenRequest;
-// use App\Models\ResolvedRequest;
 
 class HelpDeskController extends Controller
 {
+    // Display all help desk requests
     public function index()
     {
-        // Fetch Open and Resolved Requests from the database (assuming you have the models)
-        // $openRequests = OpenRequest::all();
-        // $resolvedRequests = ResolvedRequest::all();
+        $requests = HelpDeskRequest::all();
+        return view('resident.helpdesk.index', compact('requests'));
+    }
 
-        // For demo purposes, mock up some data if models are not set up yet
-        $openRequests = [
-            (object)[
-                'id' => 'C200',
-                'title' => 'Fix Leaking Tap',
-                'user_name' => 'Alice Smith',
-                'apartment' => 'F 1001',
-                'description' => 'The tap in the kitchen is leaking and needs immediate attention.',
-                'days_open' => 2,
-                'created_at' => now()->subDays(2)
-            ],
-            (object)[
-                'id' => 'C201',
-                'title' => 'Air Conditioner Repair',
-                'user_name' => 'Bob Johnson',
-                'apartment' => 'G 2020',
-                'description' => 'The air conditioner in the living room is not working.',
-                'days_open' => 1,
-                'created_at' => now()->subDay()
-            ]
-        ];
+    // Show the form for creating a new help desk request
+    public function create()
+    {
+        return view('resident.helpdesk.create');
+    }
 
-        $resolvedRequests = [
-            (object)[
-                'id' => 'C160',
-                'title' => 'Maintenance Completed',
-                'user_name' => 'John Doe',
-                'apartment' => 'A 1010',
-                'description' => 'Fixed the lighting issue in the main hallway.',
-                'resolved_days_ago' => 15,
-                'created_at' => now()->subDays(16),
-                'resolved_at' => now()->subDays(15)
-            ],
-            (object)[
-                'id' => 'C161',
-                'title' => 'Plumbing Repair',
-                'user_name' => 'Sarah Lee',
-                'apartment' => 'B 0202',
-                'description' => 'Fixed the broken pipe in the basement.',
-                'resolved_days_ago' => 20,
-                'created_at' => now()->subDays(22),
-                'resolved_at' => now()->subDays(20)
-            ]
-        ];
+    // Store a new help desk request
+    public function store(Request $request)
+    {
+        $validated = $request->validate([
+            'request_title' => 'required|string|max:255',
+            'description' => 'required|string',
+            'office' => 'nullable|string|max:255',
+            'category' => 'required|string',
+            'preferred_date' => 'nullable|date',
+            'urgent' => 'nullable|boolean',
+            'attachments.*' => 'mimes:jpg,jpeg,png,pdf|max:2048',
+        ]);
 
-        // Pass the data to the view
-        return view('resident/helpdesk.index', compact('openRequests', 'resolvedRequests'));
+        $attachments = [];
+        if ($request->hasFile('attachments')) {
+            foreach ($request->file('attachments') as $file) {
+                $filename = time() . '-' . $file->getClientOriginalName();
+                $file->move(public_path('helpdesk'), $filename);
+                $attachments[] = $filename;
+            }
+        }
+
+        HelpDeskRequest::create([
+            'request_title' => $validated['request_title'],
+            'description' => $validated['description'],
+            'office' => $validated['office'],
+            'category' => $validated['category'],
+            'preferred_date' => $validated['preferred_date'],
+            'urgent' => $validated['urgent'] ?? false,
+            'attachments' => implode(',', $attachments),
+            'status' => 'OPEN',
+        ]);
+
+        return redirect()->back()->with('success', 'Help Desk request submitted successfully!');
+    }
+
+    // Show the form for editing a specific help desk request
+    public function edit($id)
+    {
+        $request = HelpDeskRequest::findOrFail($id);
+        return view('resident.helpdesk.edit', compact('request'));
+    }
+
+    // Update a specific help desk request
+    public function update(Request $request, $id)
+    {
+        $validated = $request->validate([
+            'request_title' => 'required|string|max:255',
+            'description' => 'required|string',
+            'office' => 'nullable|string|max:255',
+            'category' => 'required|string',
+            'preferred_date' => 'nullable|date',
+            'urgent' => 'nullable|boolean',
+            'attachments.*' => 'mimes:jpg,jpeg,png,pdf|max:2048',
+        ]);
+
+        $helpRequest = HelpDeskRequest::findOrFail($id);
+        $helpRequest->request_title = $validated['request_title'];
+        $helpRequest->description = $validated['description'];
+        $helpRequest->office = $validated['office'];
+        $helpRequest->category = $validated['category'];
+        $helpRequest->preferred_date = $validated['preferred_date'];
+        $helpRequest->urgent = $validated['urgent'] ?? false;
+
+        if ($request->hasFile('attachments')) {
+            $attachments = [];
+            foreach ($request->file('attachments') as $file) {
+                $filename = time() . '-' . $file->getClientOriginalName();
+                $file->move(public_path('helpdesk'), $filename);
+                $attachments[] = $filename;
+            }
+            $helpRequest->attachments = implode(',', $attachments);
+        }
+
+        $helpRequest->save();
+
+        return redirect()->route('resident.helpdesk.index')->with('success', 'Help Desk request updated successfully!');
+    }
+
+    // Delete a specific help desk request
+    public function destroy($id)
+    {
+        $helpRequest = HelpDeskRequest::findOrFail($id);
+        $helpRequest->delete();
+
+        return redirect()->route('resident.helpdesk.index')->with('success', 'Help Desk request deleted successfully!');
     }
 }
-

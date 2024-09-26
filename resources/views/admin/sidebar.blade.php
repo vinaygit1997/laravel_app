@@ -124,7 +124,7 @@
     </li>
 
     <li class="nav-item">   
-        <a class="nav-link" href="{{ route('admin.parking-slot.index') }}">
+        <a class="nav-link" href="{{ route('admin.parking.index') }}">
             <i class="bi bi-car-front"></i>
             <span class="nav-text">Parking</span>
             <!-- <i class="bi bi-chevron-down ms-auto"></i> -->
@@ -163,7 +163,7 @@
 </li>
       
 <li class="nav-item">   
-    <a class="nav-link" href="{{ route('admin.projects.projectmeeting') }}">
+    <a class="nav-link" href="{{ route('admin.projects.index') }}">
         <i class="bi bi-kanban"></i>
         <span class="nav-text">Projects&Meetings</span>
         

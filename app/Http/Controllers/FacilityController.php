@@ -22,10 +22,13 @@ class FacilityController extends Controller
     // }
 
     // Show the facility creation form (admin view)
-    public function create()
-    {
-        return view('admin.facilities.create');
-    }
+  // Show the facility creation form (admin view)
+public function create()
+{
+    $facilities = Facilities::all(); // Fetch all facilities
+    return view('admin.facilities.create', compact('facilities')); // Pass facilities to the view
+}
+
 
     // Handle the form submission and insert facility data (admin view)
     public function store(Request $request)

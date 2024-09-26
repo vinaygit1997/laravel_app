@@ -354,9 +354,28 @@ use App\Http\Controllers\DocumentController;
 
 Route::get('/resident/documents', [DocumentController::class, 'index'])->name('resident.document.index');
 
+// use App\Http\Controllers\HelpDeskController;
+
+// Route::get('/resident/helpdesk', [HelpDeskController::class, 'index'])->name('resident.helpdesk.index');
+
 use App\Http\Controllers\HelpDeskController;
 
 Route::get('/resident/helpdesk', [HelpDeskController::class, 'index'])->name('resident.helpdesk.index');
+// Route to handle the help desk form submission
+Route::post('/helpdesk/submit', [HelpDeskController::class, 'store'])->name('submit.request');
+
+// Route to display the form for creating a new help desk request
+Route::get('/helpdesk/create', [HelpDeskController::class, 'create'])->name('submit.request.form');
+
+// Route to show the edit form for a help desk request
+Route::get('/requests/{id}/edit', [HelpDeskController::class, 'edit'])->name('requests.edit');
+
+// Route to update a help desk request
+Route::put('/requests/{id}', [HelpDeskController::class, 'update'])->name('requests.update');
+
+// Route to delete a help desk request
+Route::delete('/requests/{id}', [HelpDeskController::class, 'destroy'])->name('requests.destroy');
+
 
 Route::get('/resident/moderate-forum', function () {
     return view('resident.moderate-forum.moderate-forum');
@@ -448,3 +467,34 @@ Route::get('/resident/profile/test', [ResidentController::class, 'test'])->name(
 
 
 Route::get('/resident/{id}', [ResidentController::class, 'show'])->name('resident.show');
+
+use App\Http\Controllers\MaintenanceController;
+
+Route::get('/maintenance-payment', [MaintenanceController::class, 'showPaymentForm'])->name('maintenance.paymentForm');
+Route::post('/maintenance-payment', [MaintenanceController::class, 'processPayment'])->name('maintenance.processPayment');
+
+
+use App\Http\Controllers\ProjectController;
+
+Route::prefix('admin')->name('admin.')->group(function () {
+    Route::get('/projects', [ProjectController::class, 'index'])->name('projects.index');
+    Route::get('/projects/create', [ProjectController::class, 'create'])->name('projects.create');
+    Route::post('/projects', [ProjectController::class, 'store'])->name('projects.store');
+    Route::get('/projects/{id}', [ProjectController::class, 'show'])->name('projects.show');
+    Route::get('/projects/{id}/edit', [ProjectController::class, 'edit'])->name('projects.edit');
+    Route::put('/projects/{id}', [ProjectController::class, 'update'])->name('projects.update');
+    Route::delete('/projects/{id}', [ProjectController::class, 'destroy'])->name('projects.destroy');
+});
+
+use App\Http\Controllers\ParkingController;
+
+Route::resource('parking', ParkingController::class);
+
+// Route for displaying the list of parking entries
+Route::get('/admin/parking', [ParkingController::class, 'index'])->name('admin.parking.index');
+
+// Route for displaying the create parking form
+Route::get('/admin/parking/create', [ParkingController::class, 'create'])->name('admin.parking.create');
+Route::get('/admin/parking/{parking}/edit', [ParkingController::class, 'edit'])->name('admin.parking.edit');
+Route::get('/admin/parking/{parking}', [ParkingController::class, 'show'])->name('admin.parking.show');
+Route::delete('/admin/parking/{parking}', [ParkingController::class, 'destroy'])->name('admin.parking.destroy');

@@ -250,8 +250,13 @@
                     <!-- Tab Contents -->
                     <div id="dues-content" class="tab-content">
                         <div class="mt-3">
-                            <h4>Amount Due: ₹15,477 | Accrued Penalty: ₹0</h4>
-                        </div>
+    @if (isset($maintenance_fee))
+        <h4>Amount Due: ₹{{ number_format($maintenance_fee, 2) }} | Accrued Penalty: ₹0</h4>
+    @else
+        <h4>Amount Due: ₹0.00 | Accrued Penalty: ₹0</h4>
+    @endif
+</div>
+
 
                         <div class="row mt-4">
                             <div class="col-md-3">
@@ -270,7 +275,9 @@
 
                         <div class="row mt-4">
                             <div class="col-md-3">
-                                <button class="btn btn-primary btn-block">Pay Now</button>
+                                <!-- <button class="btn btn-primary btn-block">Pay Now</button> -->
+                                <a href="{{ route('maintenance.paymentForm') }}" class="btn btn-primary">Pay Now</a>
+
                             </div>
                         </div>
                     </div>
